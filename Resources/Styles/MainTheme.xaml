@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarlinkTPV.Resources.Styles.MainTheme">
+
+    <!-- ========================= -->
+    <!-- Colores -->
+    <!-- ========================= -->
+
+    <Color x:Key="ColorTextoGrande">#1F2933</Color>
+    <Color x:Key="ColorTextoPequeno">#5B6870</Color>
+
+    <Color x:Key="ColorBotonPrincipalFondo">#2F6D67</Color>
+    <Color x:Key="ColorBotonPrincipalTexto">#FFFDF8</Color>
+
+    <Color x:Key="ColorBotonAlternativoFondo">#F3EFE7</Color>
+    <Color x:Key="ColorBotonAlternativoTexto">#285A55</Color>
+
+    <Color x:Key="ColorBorder">#D7DCCD</Color>
+
+    <Color x:Key="ColorFondoPrincipal">#F8F6F1</Color>
+    <Color x:Key="ColorFondoContenedores">#FFFCF7</Color>
+    <Color x:Key="ColorFondoAlternativo">#5A928C</Color>
+
+    <Color x:Key="ColorPanelSecundario">#EFE9DE</Color>
+
+    <Color x:Key="ColorBotonCriticoFondo">#D96C3F</Color>
+    <Color x:Key="ColorBotonCriticoTexto">#FFFDF9</Color>
+
+    <Color x:Key="ColorBotonDeshabilitadoFondo">#C9D1C7</Color>
+    <Color x:Key="ColorBotonDeshabilitadoTexto">#8B959A</Color>
+
+    <Color x:Key="ColorEntryFondo">#FDFBF8</Color>
+    <Color x:Key="ColorPlaceholder">#9AA4A6</Color>
+
+    <!-- ========================= -->
+    <!-- Elementos genéricos -->
+    <!-- ========================= -->
+
+    <!-- Label pequeño genérico -->
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource ColorTextoPequeno}" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+    <!-- Button genérico = botón principal -->
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonPrincipalFondo}" />
+        <Setter Property="TextColor" Value="{StaticResource ColorBotonPrincipalTexto}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="14,10" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonDeshabilitadoFondo}" />
+                            <Setter Property="TextColor" Value="{StaticResource ColorBotonDeshabilitadoTexto}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!-- Entry genérico -->
+    <Style TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorEntryFondo}" />
+        <Setter Property="TextColor" Value="{StaticResource ColorTextoGrande}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource ColorPlaceholder}" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="Inter" />
+        <Setter Property="HeightRequest" Value="44" />
+    </Style>
+
+    <!-- Border genérico -->
+    <Style TargetType="Border">
+        <Setter Property="Stroke" Value="{StaticResource ColorBorder}" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorFondoContenedores}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 20"/>
+    </Style>
+
+    <!-- ========================= -->
+    <!-- Elementos con x:Key -->
+    <!-- ========================= -->
+
+    <!-- Label de texto grande -->
+    <Style x:Key="LabelTextoGrande" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource ColorTextoGrande}" />
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Montserrat" />
+    </Style>
+
+    <!-- Button alternativo -->
+    <Style x:Key="BotonAlternativoStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonAlternativoFondo}" />
+        <Setter Property="TextColor" Value="{StaticResource ColorBotonAlternativoTexto}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="14,10" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="BorderColor" Value="{StaticResource ColorBorder}" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonDeshabilitadoFondo}" />
+                            <Setter Property="TextColor" Value="{StaticResource ColorBotonDeshabilitadoTexto}" />
+                            <Setter Property="BorderColor" Value="{StaticResource ColorBorder}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!-- Button de acción crítica -->
+    <Style x:Key="BotonAccionCriticaStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonCriticoFondo}" />
+        <Setter Property="TextColor" Value="{StaticResource ColorBotonCriticoTexto}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="16,12" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonDeshabilitadoFondo}" />
+                            <Setter Property="TextColor" Value="{StaticResource ColorBotonDeshabilitadoTexto}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!-- Border entry -->
+    <Style x:Key="BorderEntry" TargetType="Border">
+        <Setter Property="Stroke" Value="{StaticResource ColorBorder}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorFondoContenedores}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
+    </Style>
+</ResourceDictionary>

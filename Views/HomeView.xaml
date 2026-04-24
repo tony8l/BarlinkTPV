@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarlinkTPV.Views.HomeView">
+
+    <Grid
+        BackgroundColor="{DynamicResource ColorFondoPrincipal}">
+
+        <Border
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            HeightRequest="500"
+            WidthRequest="350">
+
+            <VerticalStackLayout
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Spacing="10">
+
+                <Button
+                    x:Name="btnFichar"
+                    Text="⌚ FICHAR"/>
+                <Button
+                    x:Name="btnCaja"
+                    Text="💰 CAJA"
+                    Clicked="btnCaja_Clicked"/>
+                <Button
+                    x:Name="btnConfiguracion"
+                    Text="🔧 CONFIGURACIÓN"/>
+                <Button
+                    x:Name="btnCerrarSesion"
+                    Text="⛔ CERRAR SESIÓN"
+                    Clicked="btnCerrarSesion_Clicked"/>
+            </VerticalStackLayout>
+        </Border>
+        
+    </Grid>
+    
+</ContentPage>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarlinkTPV.Views.LoginView">
+
+    <Grid
+        BackgroundColor="{DynamicResource ColorFondoPrincipal}">
+
+        <Border
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            HeightRequest="500"
+            WidthRequest="350"
+            Background="{DynamicResource ColorFondoContenedores}">
+
+            <VerticalStackLayout
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label
+                    Text="BARLINK TPV"
+                    Style="{DynamicResource LabelTextoGrande}"
+                    HorizontalOptions="Center"/>
+
+                <Border
+                    Style="{DynamicResource BorderEntry}"
+                    WidthRequest="210"
+                    HeightRequest="50">
+                    <Entry
+                        x:Name="entryDni"
+                        WidthRequest="200"
+                        Placeholder="Introduce tu DNI"
+                        HorizontalTextAlignment="Center"/>
+                </Border>
+
+                <Button
+                    x:Name="btnIniciarSesion"
+                    Text="Iniciar Sesión"
+                    WidthRequest="150"
+                    Clicked="btnIniciarSesion_Clicked"/>
+
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+    
+</ContentPage>
