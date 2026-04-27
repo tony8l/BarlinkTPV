@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup 
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:toolkit ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+            x:Class="BarlinkTPV.Popups.WorkerRegPopup">
+
+    <Border
+        Padding="20"
+        StrokeThickness="0"
+        BackgroundColor="{StaticResource ColorFondoContenedores}"
+        StrokeShape="RoundRectangle 20">
+
+        <VerticalStackLayout
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Spacing="15">
+            <Label
+                Style="{StaticResource LabelTextoGrande}"
+                Text="Fichaje"
+                HorizontalOptions="Center"/>
+
+            <Label
+                x:Name="lblEstado"
+                Style="{StaticResource Label}"
+                Text="Selecciona una opción"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="btnEntrada"
+                Text="Fichar entrada"
+                Clicked="btnEntrada_Clicked"/>
+
+            <Button
+                x:Name="btnSalida"
+                Text="Fichar salida"
+                Clicked="btnSalida_Clicked"/>
+
+            <Button
+                x:Name="btnCancelar"
+                Text="Cancelar"
+                Style="{StaticResource BotonCancelar}"
+                Clicked="btnCancelar_Clicked"/>
+            
+        </VerticalStackLayout>
+    </Border>
+</toolkit:Popup>

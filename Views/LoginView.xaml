@@ -13,32 +13,55 @@
             WidthRequest="350"
             Background="{DynamicResource ColorFondoContenedores}">
 
-            <VerticalStackLayout
-                VerticalOptions="Center"
-                HorizontalOptions="Center">
+            <Grid
+                RowDefinitions="*,*,*"
+                RowSpacing="0"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+
                 <Label
-                    Text="BARLINK TPV"
+                    Grid.Row="0"               
                     Style="{DynamicResource LabelTextoGrande}"
+                    Text="BARLINK TPV"
+                    VerticalOptions="Center"
                     HorizontalOptions="Center"/>
 
-                <Border
-                    Style="{DynamicResource BorderEntry}"
-                    WidthRequest="210"
-                    HeightRequest="50">
-                    <Entry
-                        x:Name="entryDni"
-                        WidthRequest="200"
-                        Placeholder="Introduce tu DNI"
-                        HorizontalTextAlignment="Center"/>
-                </Border>
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="20">
+                    <Border
+                        Style="{DynamicResource BorderEntry}"
+                        WidthRequest="210"
+                        HeightRequest="50">
 
-                <Button
-                    x:Name="btnIniciarSesion"
-                    Text="Iniciar Sesión"
-                    WidthRequest="150"
-                    Clicked="btnIniciarSesion_Clicked"/>
+                        <Entry
+                            x:Name="entryDni"
+                            WidthRequest="200"
+                            Placeholder="Introduce tu DNI"
+                            HorizontalTextAlignment="Center"/>
+                    </Border>
 
-            </VerticalStackLayout>
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Spacing="5">
+                        <Button
+                            x:Name="btnIniciarSesion"
+                            Text="Iniciar Sesión"
+                            WidthRequest="150"
+                            Clicked="btnIniciarSesion_Clicked"/>
+
+                        <ImageButton
+                            x:Name="btnApagar"
+                            Style="{DynamicResource ImgBotonSalir}"
+                            Source="shutdown_icon.png"
+                            Clicked="btnApagar_Clicked"/>
+
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Grid>
         </Border>
     </Grid>
     

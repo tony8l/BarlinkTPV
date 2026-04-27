@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BarlinkTPV.Views.HomeView">
+             x:Class="BarlinkTPV.Views.HomeView"
+             >
 
     <Grid
         BackgroundColor="{DynamicResource ColorFondoPrincipal}">
@@ -17,9 +18,19 @@
                 HorizontalOptions="Center"
                 Spacing="10">
 
+                <Label
+                    Text="Empleado Actual:"
+                    Style="{DynamicResource LabelTextoGrande}"
+                    HorizontalOptions="Center"/>
+                <Label
+                    x:Name="lblNombreUsuario"
+                    Style="{DynamicResource LabelTextoGrande}"
+                    HorizontalOptions="Center"
+                    Margin="0,0,0,30"/>
                 <Button
                     x:Name="btnFichar"
-                    Text="⌚ FICHAR"/>
+                    Text="⌚ FICHAR"
+                    Clicked="btnFichar_Clicked"/>
                 <Button
                     x:Name="btnCaja"
                     Text="💰 CAJA"
@@ -31,6 +42,13 @@
                     x:Name="btnCerrarSesion"
                     Text="⛔ CERRAR SESIÓN"
                     Clicked="btnCerrarSesion_Clicked"/>
+
+                <ImageButton
+                    x:Name="btnApagar"
+                    Style="{DynamicResource ImgBotonSalir}"
+                    Source="shutdown_icon.png"
+                    Clicked="btnApagar_Clicked"
+                    Margin="0,50,0,0"/>
             </VerticalStackLayout>
         </Border>
         

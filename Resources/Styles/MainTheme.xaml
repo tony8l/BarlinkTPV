@@ -16,11 +16,15 @@
     <Color x:Key="ColorBotonAlternativoFondo">#F3EFE7</Color>
     <Color x:Key="ColorBotonAlternativoTexto">#285A55</Color>
 
+    <Color x:Key="ColorBotonCancelarFondo">#FF2B1C</Color>
+    <Color x:Key="ColorBotonCancelarTexto">#FFFDF8</Color>
+
     <Color x:Key="ColorBorder">#D7DCCD</Color>
 
     <Color x:Key="ColorFondoPrincipal">#F8F6F1</Color>
     <Color x:Key="ColorFondoContenedores">#FFFCF7</Color>
     <Color x:Key="ColorFondoAlternativo">#5A928C</Color>
+    <Color x:Key="ColorFondoFlyout">#5A928C</Color>
 
     <Color x:Key="ColorPanelSecundario">#EFE9DE</Color>
 
@@ -38,9 +42,9 @@
     <!-- ========================= -->
 
     <!-- Label pequeño genérico -->
-    <Style TargetType="Label">
+    <Style TargetType="Label" x:Key="Label">
         <Setter Property="TextColor" Value="{StaticResource ColorTextoPequeno}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="16" />
     </Style>
 
     <!-- Button genérico = botón principal -->
@@ -98,7 +102,7 @@
     </Style>
 
     <!-- Button alternativo -->
-    <Style x:Key="BotonAlternativoStyle" TargetType="Button">
+    <Style x:Key="BotonAlternativo" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonAlternativoFondo}" />
         <Setter Property="TextColor" Value="{StaticResource ColorBotonAlternativoTexto}" />
         <Setter Property="FontSize" Value="16" />
@@ -123,8 +127,42 @@
         </Setter>
     </Style>
 
+    <!-- Button Cancelar -->
+    <Style x:Key="BotonCancelar" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonCancelarFondo}" />
+        <Setter Property="TextColor" Value="{StaticResource ColorBotonCancelarTexto}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="14,10" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="BorderColor" Value="{StaticResource ColorBorder}" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonDeshabilitadoFondo}" />
+                            <Setter Property="TextColor" Value="{StaticResource ColorBotonDeshabilitadoTexto}" />
+                            <Setter Property="BorderColor" Value="{StaticResource ColorBorder}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ImgBotonSalir" TargetType="ImageButton">
+        <Setter Property="Background" Value="{StaticResource ColorBotonCancelarFondo}"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="WidthRequest" Value="40"/>
+    </Style>
+
     <!-- Button de acción crítica -->
-    <Style x:Key="BotonAccionCriticaStyle" TargetType="Button">
+    <Style x:Key="BotonAccionCritica" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonCriticoFondo}" />
         <Setter Property="TextColor" Value="{StaticResource ColorBotonCriticoTexto}" />
         <Setter Property="FontSize" Value="18" />

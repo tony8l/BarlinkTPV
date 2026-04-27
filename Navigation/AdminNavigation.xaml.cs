@@ -3,10 +3,10 @@ using BarlinkTPV.Views;
 
 namespace BarlinkTPV.Navigation;
 
-public partial class UserNavigation : Shell
+public partial class AdminNavigation : Shell
 {
 	private readonly GlobalData globalData;
-	public UserNavigation(GlobalData globalData)
+	public AdminNavigation(GlobalData globalData)
 	{
 		InitializeComponent();
 		this.globalData = globalData;
