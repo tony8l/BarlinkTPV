@@ -13,7 +13,7 @@ namespace BarlinkTPV.Services
         {
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://tu-api.com/api/")
+                BaseAddress = new Uri("https://localhost:7002/api/")
             };
 
             // Configuras las opciones una sola vez en el constructor

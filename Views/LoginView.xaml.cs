@@ -1,18 +1,19 @@
+using BarlinkTPV.Models;
 using BarlinkTPV.Navigation;
 using BarlinkTPV.Services;
 using BarlinkTPV.Singleton;
-using BarlinkTPV.Models;
 namespace BarlinkTPV.Views;
 
 public partial class LoginView : ContentPage
 {
 	public readonly GlobalData globalData;
     private ApiService _apiService;
-	public LoginView(GlobalData globalData)
+	public LoginView(GlobalData globalData, ApiService apiService)
 	{
 		InitializeComponent();
 		this.globalData = globalData;
-	}
+        _apiService = apiService;
+    }
 
     private async void btnIniciarSesion_Clicked(object sender, EventArgs e)
     {

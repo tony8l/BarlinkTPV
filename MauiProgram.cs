@@ -1,4 +1,5 @@
-﻿using BarlinkTPV.Singleton;
+﻿using BarlinkTPV.Services;
+using BarlinkTPV.Singleton;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
@@ -15,11 +16,13 @@ namespace BarlinkTPV
                 .UseMauiCommunityToolkit()
                 .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
+
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             builder.Services.AddSingleton<GlobalData>();
+            builder.Services.AddSingleton<ApiService>();
 
 #if DEBUG
             builder.Logging.AddDebug();
