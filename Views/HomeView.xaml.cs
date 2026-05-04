@@ -31,8 +31,12 @@ public partial class HomeView : ContentPage
 
     private async void btnFichar_Clicked(object sender, EventArgs e)
     {
-        string ultimoFichaje = "Entrada";
-        var popup = new WorkerRegPopup(ultimoFichaje);
+        if (string.IsNullOrWhiteSpace(globalData.IdUsuario))
+        {
+            await DisplayAlertAsync("Error", "No hay usuario activo", "Aceptar");
+            return;
+        }
+        var popup = new WorkerRegPopup(globalData);
         await this.ShowPopupAsync(popup);
     }
 

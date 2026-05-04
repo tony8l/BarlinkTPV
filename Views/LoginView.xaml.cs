@@ -17,15 +17,6 @@ public partial class LoginView : ContentPage
 
     private async void btnIniciarSesion_Clicked(object sender, EventArgs e)
     {
-        /*bool loginCorrecto = true;
-		string nombreUsuario = "Antony";
-
-		if (loginCorrecto)
-		{
-			globalData.NombreUsuario = nombreUsuario;
-            Application.Current.MainPage = new UserNavigation(globalData);
-        }*/
-
         string dniIntroducido;
         if(entryDni.Text != null)
         {
@@ -46,7 +37,13 @@ public partial class LoginView : ContentPage
 
         if (usuario != null)
         {
+            var ultimoFichaje = await _apiService.ObtenerUltimoFichaje(usuario.Dni);
+
+            globalData.IdUsuario = usuario.Id;
+            globalData.DniUsuario = usuario.Dni;
             globalData.NombreUsuario = usuario.Nombre;
+            globalData.RolUsuario = usuario.Rol;
+            globalData.UltimoTipoFichaje = ultimoFichaje?.TipoFichaje;
 
             if (usuario.Rol == RolUsuario.Camarero)
             {

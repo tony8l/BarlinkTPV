@@ -6,8 +6,17 @@ namespace BarlinkTPV.Models
 {
     public class Mesa
     {
-        public string Id { get; set; }
-        public string IdMesa { get; set; }
-        public bool Ocupada { get; set; }
+        public string Id { get; set; } = string.Empty;
+        public string CategoriaMesa { get; set; } = string.Empty;
+        public string CodigoMesa { get; set; } = string.Empty;
+        public EstadoMesa EstadoMesa { get; set; }
+        public bool Bloqueada { get; set; }
+    }
+
+    public enum EstadoMesa
+    {
+        Libre,
+        Ocupada,
+        Cobrando
     }
 }

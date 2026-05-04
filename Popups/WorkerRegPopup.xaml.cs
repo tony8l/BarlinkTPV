@@ -1,43 +1,51 @@
+using BarlinkTPV.Models;
+using BarlinkTPV.Services;
 using CommunityToolkit.Maui.Views;
+using BarlinkTPV.Singleton;
 
 namespace BarlinkTPV.Popups;
 
 public partial class WorkerRegPopup : Popup
 {
-    public string Resultado { get; set; } = "";
-	public WorkerRegPopup(string ultimoFichaje)
+    private ApiService _apiService;
+    private GlobalData globalData;
+	public WorkerRegPopup(GlobalData globalData)
 	{
 		InitializeComponent();
+        _apiService = new ApiService();
+        this.globalData = globalData;
 
-		if (string.IsNullOrEmpty(ultimoFichaje) || ultimoFichaje == "Salida")
-        {
-            btnEntrada.IsEnabled = true;
-            btnSalida.IsEnabled = false;
-            lblEstado.Text = "Puedes fichar ENTRADA";
-        }
-        else if (ultimoFichaje == "Entrada")
+        if (globalData.UltimoTipoFichaje == TipoFichaje.Entrada)
         {
             btnEntrada.IsEnabled = false;
             btnSalida.IsEnabled = true;
             lblEstado.Text = "Puedes fichar SALIDA";
         }
+
+        else if (globalData.UltimoTipoFichaje == TipoFichaje.Salida || globalData.UltimoTipoFichaje == null)
+        {
+            btnEntrada.IsEnabled = true;
+            btnSalida.IsEnabled = false;
+            lblEstado.Text = "Puedes fichar ENTRADA";
+        }
     }
 
     private async void btnEntrada_Clicked(object sender, EventArgs e)
     {
-        Resultado = "Entrada";
+        var fichaje = await _apiService.FicharEntrada(globalData.IdUsuario);
+        globalData.UltimoTipoFichaje = TipoFichaje.Entrada;
         await CloseAsync();
     }
 
     private async void btnSalida_Clicked(object sender, EventArgs e)
     {
-        Resultado = "Salida";
+        var fichaje = await _apiService.FicharSalida(globalData.IdUsuario);
+        globalData.UltimoTipoFichaje = TipoFichaje.Salida;
         await CloseAsync();
     }
 
     private async void btnCancelar_Clicked(object sender, EventArgs e)
     {
-        Resultado = null;
         await CloseAsync();
     }
 }

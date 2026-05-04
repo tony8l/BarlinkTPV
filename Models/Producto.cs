@@ -6,11 +6,11 @@ namespace BarlinkTPV.Models
 {
     public class Producto
     {
-        public string Id { get; set; }
-        public string Nombre { get; set; }
+        public string Id { get; set; } = string.Empty;
+        public string Nombre { get; set; } = string.Empty;
         public decimal Precio { get; set; }
         public int Iva { get; set; }
-        public string CategoriaId { get; set; }
+        public string CategoriaId { get; set; } = string.Empty;
         public bool EsVisible { get; set; }
     }
 }
