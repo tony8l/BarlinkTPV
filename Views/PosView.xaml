@@ -5,25 +5,101 @@
              BackgroundColor="{DynamicResource ColorFondoPrincipal}">
 
     <Grid
-        ColumnDefinitions="*,*">
+        RowDefinitions="Auto,*,Auto,*">
+        <Label 
+            Text="Sala"
+            TextColor="Black"
+            Grid.Row="0"/>
 
-        <Border
-            Grid.Column="0"
-            Margin="10">
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="15">
+                <CollectionView
+                    x:Name="collectionMesasSala"
+                    SelectionMode="Single"
+                    SelectionChanged="collectionMesasSala_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
 
-            <Label
-                Text="HOLA"/>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="12"
+                                    Margin="6"
+                                    BackgroundColor="Black">
 
-        </Border>
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="{Binding CodigoMesa}"
+                                           FontSize="20"
+                                           FontAttributes="Bold"
+                                           TextColor="White" />
 
-        <Border
-            Grid.Column="1"
-            BackgroundColor="{DynamicResource ColorPanelSecundario}"
-            Margin="10">
-            
-            
+                                    <Label Text="{Binding CategoriaMesa}"
+                                           FontSize="14"
+                                           TextColor="LightGray" />
 
-        </Border>
-        
+                                    <Label Text="{Binding EstadoMesa}"
+                                           FontSize="16"
+                                           TextColor="Orange" />
+
+                                    <Label Text="{Binding Bloqueada, StringFormat='Bloqueada: {0}'}"
+                                       FontSize="14"
+                                       TextColor="LightGray" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Label 
+            Text="Terraza"
+            TextColor="Black"
+            Grid.Row="2"/>
+
+        <ScrollView Grid.Row="3">
+            <VerticalStackLayout Padding="20" Spacing="15">
+                <CollectionView
+                    x:Name="collectionMesasTerraza"
+                    SelectionMode="Single"
+                    SelectionChanged="collectionMesasTerraza_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="12"
+                                Margin="6"
+                                Background="Black">
+
+                                <VerticalStackLayout Spacing="8">
+                                    <Label 
+                                        Text="{Binding CodigoMesa}"
+                                        FontSize="20"
+                                        FontAttributes="Bold"
+                                        TextColor="White" />
+
+                                    <Label 
+                                        Text="{Binding CategoriaMesa}"
+                                        FontSize="14"
+                                        TextColor="LightGray" />
+
+                                    <Label 
+                                        Text="{Binding EstadoMesa}"
+                                        FontSize="16"
+                                        TextColor="Orange" />
+
+                                    <Label 
+                                        Text="{Binding Bloqueada, StringFormat='Bloqueada: {0}'}"
+                                        FontSize="14"
+                                        TextColor="LightGray" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
     </Grid>
 </ContentPage>

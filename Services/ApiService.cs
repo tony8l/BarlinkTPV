@@ -1,5 +1,6 @@
 ﻿using BarlinkTPV.Models;
 using BarlinkTPV.Models.DTOs;
+using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -75,6 +76,88 @@ namespace BarlinkTPV.Services
                 return null;
 
             return await response.Content.ReadFromJsonAsync<Fichaje>(_jsonOptions);
+        }
+
+        public async Task<List<Mesa>> ObtenerMesas()
+        { 
+            var response = await _httpClient.GetAsync($"mesas");
+
+            if (!response.IsSuccessStatusCode)
+                return new List<Mesa>();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Mesa>>(json, _jsonOptions) ?? new List<Mesa>();
+        }
+
+        public async Task<bool> CambiarEstadoMesa(string mesaId, EstadoMesa nuevoEstado)
+        {
+            var request = new ActualizarMesaDto
+            {
+                EstadoMesa = nuevoEstado
+            };
+
+            var response = await _httpClient.PatchAsJsonAsync($"mesas/{mesaId}", request);
+
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<List<Ticket>> ObtenerTickets()
+        {
+            var response = await _httpClient.GetAsync($"tickets");
+
+            if (!response.IsSuccessStatusCode)
+                return new List<Ticket>();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Ticket>>(json, _jsonOptions) ?? new List<Ticket>();
+        }
+
+        public async Task<Ticket?> ObtenerTicketMesaActual(string mesaId)
+        {
+            var response = await _httpClient.GetAsync($"mesas/{mesaId}/ticketActivo");
+
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<Ticket>(json, _jsonOptions);
+        }
+
+        public async Task<Ticket?> AbrirTicket(string mesaId)
+        {
+            var request = new CrearTicketDto
+            {
+                MesaId = mesaId
+            };
+
+            var response = await _httpClient.PostAsJsonAsync("tickets/crear", request);
+
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            return await response.Content.ReadFromJsonAsync<Ticket>(_jsonOptions);
+        }
+
+        public async Task<List<Producto>> ObtenerProductos()
+        {
+            var response = await _httpClient.GetAsync($"productos/visibles");
+
+            if (!response.IsSuccessStatusCode)
+                return new List<Producto>();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Producto>>(json, _jsonOptions) ?? new List<Producto>();
+        }
+
+        public async Task<List<Categoria>> ObtenerCategorias()
+        {
+            var response = await _httpClient.GetAsync($"categorias/visibles");
+
+            if (!response.IsSuccessStatusCode)
+                return new List<Categoria>();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Categoria>>(json, _jsonOptions) ?? new List<Categoria>();
         }
     }
 }

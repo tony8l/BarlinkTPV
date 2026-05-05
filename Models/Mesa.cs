@@ -11,6 +11,11 @@ namespace BarlinkTPV.Models
         public string CodigoMesa { get; set; } = string.Empty;
         public EstadoMesa EstadoMesa { get; set; }
         public bool Bloqueada { get; set; }
+        public bool MesaHabilitada 
+        { 
+            get { return !Bloqueada; }
+            set;
+        }
     }
 
     public enum EstadoMesa
@@ -19,4 +24,6 @@ namespace BarlinkTPV.Models
         Ocupada,
         Cobrando
     }
+
+
 }
