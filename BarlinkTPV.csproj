@@ -66,10 +66,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\Categories\bocadillos.png" />
+	  <None Remove="Resources\Images\Categories\cafes.png" />
+	  <None Remove="Resources\Images\Categories\carnes.png" />
+	  <None Remove="Resources\Images\Categories\cervezas.png" />
+	  <None Remove="Resources\Images\Categories\cubatas.png" />
+	  <None Remove="Resources\Images\Categories\desayunos.png" />
+	  <None Remove="Resources\Images\Categories\licores.png" />
+	  <None Remove="Resources\Images\Categories\raciones.png" />
+	  <None Remove="Resources\Images\Categories\vinos.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\Categories\bocadillos.png" />
+	  <MauiImage Include="Resources\Images\Categories\cafes.png" />
+	  <MauiImage Include="Resources\Images\Categories\carnes.png" />
+	  <MauiImage Include="Resources\Images\Categories\cervezas.png" />
+	  <MauiImage Include="Resources\Images\Categories\cubatas.png" />
+	  <MauiImage Include="Resources\Images\Categories\desayunos.png" />
+	  <MauiImage Include="Resources\Images\Categories\licores.png" />
+	  <MauiImage Include="Resources\Images\Categories\raciones.png" />
+	  <MauiImage Include="Resources\Images\Categories\refrescos.png" />
+	  <MauiImage Include="Resources\Images\Categories\vinos.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="14.1.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.51" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.60" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.7" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="33.2.3" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="33.2.5" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="33.2.5" />
 		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.9" />
 	</ItemGroup>
 

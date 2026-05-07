@@ -35,7 +35,6 @@
                         Style="{DynamicResource BorderEntry}"
                         WidthRequest="210"
                         HeightRequest="50">
-
                         <Entry
                             x:Name="entryDni"
                             WidthRequest="200"

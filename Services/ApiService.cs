@@ -12,6 +12,7 @@ namespace BarlinkTPV.Services
         private readonly HttpClient _httpClient;
         private readonly JsonSerializerOptions _jsonOptions;
 
+        // CADENA DE CONEXIÓN INICIAL
         public ApiService()
         {
             _httpClient = new HttpClient
@@ -27,6 +28,8 @@ namespace BarlinkTPV.Services
             _jsonOptions.Converters.Add(new JsonStringEnumConverter());
         }
 
+        #region Métodos de autenticación y fichajes de usuario
+        // Método para iniciar sesión utilizando el DNI del usuario
         public async Task<Usuario?> IniciarSesion(string dni)
         {
             var response = await _httpClient.GetAsync($"usuarios/dni/{dni}");
@@ -38,6 +41,7 @@ namespace BarlinkTPV.Services
             return JsonSerializer.Deserialize<Usuario>(json, _jsonOptions);
         }
 
+        // Método para cargar el último tipo de fichaje de un empleado utilizando su DNI
         public async Task<Fichaje?> ObtenerUltimoFichaje(string dni)
         {
             var response = await _httpClient.GetAsync($"fichajes/dni/{dni}/ultimoFichaje");
@@ -48,6 +52,7 @@ namespace BarlinkTPV.Services
             return JsonSerializer.Deserialize<Fichaje>(json, _jsonOptions);
         }
 
+        // Método para fichar la entrada de un empleado utilizando su ID
         public async Task<Fichaje?> FicharEntrada(string empleadoId)
         {
             var request = new CrearFichajeDto
@@ -63,6 +68,7 @@ namespace BarlinkTPV.Services
             return await response.Content.ReadFromJsonAsync<Fichaje>(_jsonOptions);
         }
 
+        // Método para fichar la salida de un empleado utilizando su ID
         public async Task<Fichaje?> FicharSalida(string empleadoId)
         {
             var request = new CrearFichajeDto
@@ -77,9 +83,11 @@ namespace BarlinkTPV.Services
 
             return await response.Content.ReadFromJsonAsync<Fichaje>(_jsonOptions);
         }
-
+        #endregion
+        #region Métodos de gestión de mesas
+        // Método para obtener la lista de mesas disponibles
         public async Task<List<Mesa>> ObtenerMesas()
-        { 
+        {
             var response = await _httpClient.GetAsync($"mesas");
 
             if (!response.IsSuccessStatusCode)
@@ -89,6 +97,7 @@ namespace BarlinkTPV.Services
             return JsonSerializer.Deserialize<List<Mesa>>(json, _jsonOptions) ?? new List<Mesa>();
         }
 
+        // Método para cambiar el estado de una mesa
         public async Task<bool> CambiarEstadoMesa(string mesaId, EstadoMesa nuevoEstado)
         {
             var request = new ActualizarMesaDto
@@ -101,17 +110,7 @@ namespace BarlinkTPV.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<List<Ticket>> ObtenerTickets()
-        {
-            var response = await _httpClient.GetAsync($"tickets");
-
-            if (!response.IsSuccessStatusCode)
-                return new List<Ticket>();
-
-            var json = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<List<Ticket>>(json, _jsonOptions) ?? new List<Ticket>();
-        }
-
+        // Método para obtener el ticket activo de una mesa
         public async Task<Ticket?> ObtenerTicketMesaActual(string mesaId)
         {
             var response = await _httpClient.GetAsync($"mesas/{mesaId}/ticketActivo");
@@ -122,7 +121,32 @@ namespace BarlinkTPV.Services
             var json = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<Ticket>(json, _jsonOptions);
         }
+        #endregion
+        #region Métodos categorías/productos VER+TICAR
+        // Método para obtener todas las categorías visibles
+        public async Task<List<Categoria>> ObtenerCategoriasVisibles()
+        {
+            var response = await _httpClient.GetAsync($"categorias/visibles");
 
+            if (!response.IsSuccessStatusCode)
+                return new List<Categoria>();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Categoria>>(json, _jsonOptions) ?? new List<Categoria>();
+        }
+
+        // Método para obtener todos los productos según su categoría visibles
+        public async Task<List<Producto>> ObtenerProductosPorCategoria(string categoriaId)
+        {
+            var response = await _httpClient.GetAsync($"productos/categoria/{categoriaId}");
+            if (!response.IsSuccessStatusCode)
+                return new List<Producto>();
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Producto>>(json, _jsonOptions) ?? new List<Producto>();
+        }
+        #endregion
+        #region Métodos de gestión de tickets
+        // Método para abrir un nuevo ticket en una mesa
         public async Task<Ticket?> AbrirTicket(string mesaId)
         {
             var request = new CrearTicketDto
@@ -138,26 +162,64 @@ namespace BarlinkTPV.Services
             return await response.Content.ReadFromJsonAsync<Ticket>(_jsonOptions);
         }
 
-        public async Task<List<Producto>> ObtenerProductos()
+        // Método para obtener todos los tickets
+        public async Task<List<Ticket>> ObtenerTickets()
         {
-            var response = await _httpClient.GetAsync($"productos/visibles");
+            var response = await _httpClient.GetAsync($"tickets");
 
             if (!response.IsSuccessStatusCode)
-                return new List<Producto>();
+                return new List<Ticket>();
 
             var json = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<List<Producto>>(json, _jsonOptions) ?? new List<Producto>();
+            return JsonSerializer.Deserialize<List<Ticket>>(json, _jsonOptions) ?? new List<Ticket>();
         }
 
-        public async Task<List<Categoria>> ObtenerCategorias()
+        // Método para ticar un producto en un ticket
+        public async Task<Ticket?> AniadirProductoLineaTicket(string ticketId, string productoId, int cantidad)
         {
-            var response = await _httpClient.GetAsync($"categorias/visibles");
+            var request = new CrearLineaTicketDto
+            {
+                ProductoId = productoId,
+                Cantidad = cantidad
+            };
+
+            var response = await _httpClient.PostAsJsonAsync($"tickets/id/{ticketId}/lineas", request);
 
             if (!response.IsSuccessStatusCode)
-                return new List<Categoria>();
+                return null;
 
-            var json = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<List<Categoria>>(json, _jsonOptions) ?? new List<Categoria>();
+            return await response.Content.ReadFromJsonAsync<Ticket>(_jsonOptions);
         }
+
+        // Método para eliminar un ticket de una mesa
+        public async Task<Ticket?> EliminarTicketCompleto(string mesaId)
+        {
+            var response = await _httpClient.DeleteAsync($"tickets/eliminar/mesaId/{mesaId}");
+            if (!response.IsSuccessStatusCode)
+                return null;
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<Ticket>(json, _jsonOptions);
+        }
+
+        // Método para eliminar un producto del ticket
+        public async Task<Ticket?> EliminarLineaTicket(string ticketId, string productoId)
+        {
+            var response = await _httpClient.DeleteAsync($"tickets/id/{ticketId}/lineas/{productoId}/eliminar");
+            if (!response.IsSuccessStatusCode)
+                return null;
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<Ticket>(json, _jsonOptions);
+        }
+
+        // Método para eliminar todas las lineas de un ticket (reiniciar ticket)
+        public async Task<bool> EliminarTodasLasLineasTicket(string ticketId)
+        {
+            var response = await _httpClient.DeleteAsync($"tickets/id/{ticketId}/lineas/eliminarLineas");
+            if (!response.IsSuccessStatusCode)
+                return false;
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<bool>(json, _jsonOptions);
+        }
+        #endregion
     }
 }

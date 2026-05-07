@@ -2,7 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BarlinkTPV.Views.OrderView"
+             xmlns:local="clr-namespace:BarlinkTPV.Models"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
              BackgroundColor="{DynamicResource ColorFondoPrincipal}">
+
+    <ContentPage.BindingContext>
+        <local:Ticket x:Name="coleccionLineas"/>
+    </ContentPage.BindingContext>
+
     <Grid
         ColumnDefinitions="*,*">
 
@@ -14,13 +21,15 @@
             <Grid
                 RowDefinitions="*,*"
                 RowSpacing="10">
-                <VerticalStackLayout
+                <Grid
+                    RowDefinitions="Auto,*,Auto"
                     Grid.Row="0"
                     Padding="10"
-                    Spacing="20">
-                    <!-- BARRA SUPERIOR -->
+                    RowSpacing="10">
+
                     <HorizontalStackLayout
-                        Padding="10"
+                        Grid.Row="0"
+                        Padding="5"
                         Spacing="10"
                         HorizontalOptions="Center">
                         <Label
@@ -39,18 +48,50 @@
                             Text="ABIERTO"
                             TextColor="Black"/>
                     </HorizontalStackLayout>
-                    
+
                     <!-- TABLA SYNCFUSION LINEAS -->
-                    <Border
-                        HeightRequest="350">
-                    </Border>
+                    
+                    <syncfusion:SfDataGrid
+                        x:Name="dataGridLineas"
+                        ColumnWidthMode="Fill"
+                        Grid.Row="1"
+                        BackgroundColor="LightGray"
+                        ItemsSource="{Binding Lineas}"
+                        AutoGenerateColumnsMode="None" 
+                        ScrollingMode="Line" 
+                        NavigationMode="Row" 
+                        NewItemPlaceholderPosition="AtEnd"
+                        SelectionMode="Single"
+                        
+                        SelectionChanged="dataGridLineas_SelectionChanged">
+
+                        <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:DataGridNumericColumn 
+                                HeaderText="Cantidad"
+                                MappingName="Cantidad"
+                                Width="150"
+                                Format="0"/>
+
+                            <syncfusion:DataGridTextColumn
+                                HeaderText="Nombre"
+                                MappingName="NombreProducto"
+                                Width="150"/>
+
+                            <syncfusion:DataGridNumericColumn
+                                HeaderText="Subtotal"
+                                MappingName="Total"
+                                Format="N2"
+                                />
+                        </syncfusion:SfDataGrid.Columns>
+                    </syncfusion:SfDataGrid>
 
                     <Border
+                        Grid.Row="2"
                         HeightRequest="50">
-                        
+
                     </Border>
-                    
-                </VerticalStackLayout>
+
+                </Grid>
 
 
                 <Grid
@@ -151,11 +192,13 @@
                             VerticalOptions="Fill"/>
 
                         <Button
+                            x:Name="btnAbrirCajon"
                             Text="ABRIR CAJÓN"
                             Grid.Row="4"
                             Grid.ColumnSpan="3"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="btnAbrirCajon_Clicked"/>
                     </Grid>
                     <!--#endregion-->
                     <Grid
@@ -167,28 +210,35 @@
                         <Button
                             x:Name="btnEliminarProducto"
                             Grid.Row="0"
-                            Text="Eliminar producto"/>
+                            Text="Borrar fila"
+                            Clicked="btnEliminarProducto_Clicked"/>
                         <Button
                             x:Name="btnEliminarTodo"
                             Grid.Row="1"
-                            Text="Borrar productos"/>
+                            Text="Borrar todo"
+                            Clicked="btnEliminarTodo_Clicked"/>
                         <Button
                             x:Name="btnCancelarTicket"
                             Grid.Row="2"
-                            Text="Cancelar ticket"/>
+                            Text="Cancelar ticket"
+                            Clicked="btnCancelarTicket_Clicked_1"/>
                         <Button
                             x:Name="btnImprimirCuenta"
                             Grid.Row="3"
-                            Text="Imprimir cuenta"/>
+                            Text="Imprimir cuenta"
+                            Clicked="btnImprimirCuenta_Clicked"/>
                         <Button
                             x:Name="btnSalir"
                             Grid.Row="4"
-                            Text="Salir"/>
+                            Text="Salir"
+                            Clicked="btnSalir_Clicked"/>
                         <Button
+                            x:Name="btnCobrar"
                             Grid.Column="1"
                             Grid.RowSpan="5"
                             WidthRequest="100"
-                            Text="COBRAR"/>
+                            Text="COBRAR"
+                            Clicked="btnCobrar_Clicked"/>
                     </Grid>
                     
                 </Grid>
@@ -223,7 +273,7 @@
                                 SelectionChanged="categoriasCollection_SelectionChanged">
 
                                 <CollectionView.ItemsLayout>
-                                    <GridItemsLayout Orientation="Vertical" Span="6" />
+                                    <GridItemsLayout Orientation="Vertical" Span="5"/>
                                 </CollectionView.ItemsLayout>
 
                                 <CollectionView.ItemTemplate>
@@ -233,7 +283,14 @@
                                             StrokeShape="RoundRectangle 5"
                                             WidthRequest="120"
                                             HeightRequest="100">
-                                            <VerticalStackLayout>
+                                            <VerticalStackLayout
+                                                Spacing="5"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center">
+                                                <Image
+                                                    Source="{Binding NombreImagen}"
+                                                    Aspect="AspectFit"
+                                                    HeightRequest="60"/>
                                                 <Label
                                                     Text="{Binding Nombre}"
                                                     TextColor="Black"
@@ -264,7 +321,7 @@
                                 SelectionChanged="productosCollection_SelectionChanged">
 
                                 <CollectionView.ItemsLayout>
-                                    <GridItemsLayout Orientation="Vertical" Span="6" />
+                                    <GridItemsLayout Orientation="Vertical" Span="5" />
                                 </CollectionView.ItemsLayout>
 
                                 <CollectionView.ItemTemplate>
@@ -276,6 +333,10 @@
                                             HeightRequest="100">
                                             <VerticalStackLayout
                                                 Spacing="5">
+                                                <Image
+                                                    Source="{Binding NombreImagen}"
+                                                    Aspect="AspectFit"
+                                                    HeightRequest="60"/>
                                                 <Label
                                                     Text="{Binding Nombre}"
                                                     TextColor="Black"

@@ -12,5 +12,6 @@ namespace BarlinkTPV.Models
         public int Iva { get; set; }
         public string CategoriaId { get; set; } = string.Empty;
         public bool EsVisible { get; set; }
+        public string NombreImagen { get; set; } = string.Empty;
     }
 }

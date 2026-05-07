@@ -10,17 +10,19 @@ namespace BarlinkTPV
     {
         public static MauiApp CreateMauiApp()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjGyl/VkV+XU9AclRDX3xKf0x/TGpQb19xflBPallYVBYiSV9jS3hTc0VkWXledXdWQGVYVE91XA==");
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
-                .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
 
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.ConfigureSyncfusionCore();
             builder.Services.AddSingleton<GlobalData>();
             builder.Services.AddSingleton<ApiService>();
 
