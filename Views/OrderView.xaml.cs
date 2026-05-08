@@ -1,35 +1,53 @@
 using BarlinkTPV.Models;
+using BarlinkTPV.Popups;
 using BarlinkTPV.Services;
+using BarlinkTPV.Singleton;
+using CommunityToolkit.Maui.Extensions;
 using System.Collections.ObjectModel;
 
 namespace BarlinkTPV.Views;
 
 public partial class OrderView : ContentPage
 {
+    // Variables para guardar el estado actual recibido por el constructor
 	private Mesa mesaActual;
 	private Ticket ticketActual;
+
+    // Colección observable para poder actualizar el DataGrid
     public ObservableCollection<LineaTicket> Lineas { get; set; } = new();
 
+    // Servicio para realizar las llamadas a la API
     private readonly ApiService _apiService;
+
+    // Listas para guardar los datos recibidos desde la API
 	private List<Categoria> categorias = new List<Categoria>();
 	private List<Producto> productos = new List<Producto>();
+
+    // Variable para guardar la línea seleccionada en el DataGrid con el evento SelectionChanged
     private LineaTicket? lineaSeleccionada = new LineaTicket();
 
+    private string cantidadNumpad = "";
     public OrderView(Mesa mesa, Ticket ticket)
 	{
         _apiService = new ApiService();
 		InitializeComponent();
 		this.mesaActual = mesa;
 		this.ticketActual = ticket;
+        lineaSeleccionada = null;
         BindingContext = this;
 	}
 
+    // Sobreescribimos elmétodo OnAppearing para cargar todos los datos necesarios
+    // Se carga una información de la mesa, tanto el código de la mesa como el estado de ella
+    // Se cargan las categorías disponibles y se asigna una imagen a cada categoría dependiendo de su nombre
+    // Se asignan los datos a la CollectioNView de las categorías para poder mostrarlas
     protected override async void OnAppearing()
     {
         base.OnAppearing();
         await ObtenerLineasTicket();
         lblNumMesa.Text = mesaActual.CodigoMesa;
         lblEstadoCobro.Text = mesaActual.EstadoMesa.ToString();
+
 
         categorias = await _apiService.ObtenerCategoriasVisibles();
 
@@ -54,6 +72,9 @@ public partial class OrderView : ContentPage
 
         categoriasCollection.ItemsSource = categorias;
     }
+
+    // Método que muestra las categorías disponibles (esVisible = true)
+    // Después se muestran los productos de esa categoría disponibles (esVisible = true)
     private async void categoriasCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var categoriaSeleccionada = e.CurrentSelection.FirstOrDefault() as Categoria;
@@ -63,9 +84,56 @@ public partial class OrderView : ContentPage
             return;
 
         productos = await _apiService.ObtenerProductosPorCategoria(categoriaSeleccionada.Id);
+
+        foreach (var producto in productos)
+        {
+            producto.NombreImagen = producto.Nombre switch
+            {
+                "Bocadillo Chivito" => "chivito.webp",
+                "Bocadillo Lomo-Queso" => "lomoqueso.png",
+                "Bocadillo Serranito" => "serranito.png",
+                "Montado Lomo-Queso" => "lomoqueso.png",
+                "Montado Serranito" => "serranito.png",
+                "Café Expresso" => "expresso.png",
+                "Café Cortado" => "cafeleche.webp",
+                "Café Americano" => "americano.png",
+                "Café Bombon" => "bombon.png",
+                "Chuletón Vaca" => "chuleton.png",
+                "Entrecot" => "entrecot.webp",
+                "Chuletón Wagyu" => "wagyu.webp",
+                "Caña" => "cania.png",
+                "Jarra" => "jarralitro.png",
+                "Tercio" => "tercio.png",
+                "Copa Barceló" => "barcelo.jpg",
+                "Copa JB" => "jb.png",
+                "Copa Larios" => "larios.webp",
+                "Copa Beefeater" => "beefeater.webp",
+                "Croissant" => "croissant.png",
+                "Napolitana" => "napolitana.png",
+                "Zumo Naranja" => "zumonaranja.png",
+                "Zumo Melocotón" => "zumomelocoton.png",
+                "Chupito Hierbas" => "licorhierbas.png",
+                "Chupito Orujo" => "orujo.png",
+                "Patatas Bravas" => "patatasbravas.png",
+                "Rabo Frito" => "rabofrito.png",
+                "Calamares" => "rcalamares.bmp",
+                "Surtido Ibérico" => "surtidoibericos.bmp",
+                "Agua" => "agua.png",
+                "Coca Cola" => "cocacola.png",
+                "Fanta Naranja" => "fantanaranja.png",
+                "Fanta Limón" => "fantalimon.png",
+                "Copa Vino Blanco" => "copablanco.png",
+                "Copa Vino Tinto" => "copatinto.webp",
+                "Botella Vino Blanco" => "botvinoblanco.png",
+                "Botella Vino Tinto" => "botvinotinto.png",
+                _ => "default.png"
+            };
+        }
         productosCollection.ItemsSource = productos;
     }
 
+    // Método que añade una unidad del producto que se ha seleccionado
+    // Se añade a la colección de "lineaTicket" y se muestra en el DatGrid
     private async void productosCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var productoSeleccionado = e.CurrentSelection.FirstOrDefault() as Producto;
@@ -74,17 +142,30 @@ public partial class OrderView : ContentPage
         if(productoSeleccionado == null)
             return;
 
-        var ticketActualizado = await _apiService.AniadirProductoLineaTicket(ticketActual.Id, productoSeleccionado.Id, 1);
+        int cantidad;
+        if (string.IsNullOrEmpty(cantidadNumpad))
+        {
+            cantidad = 1;
+        }
+        else
+        {
+            cantidad = int.Parse(cantidadNumpad);
+        }
+
+        var ticketActualizado = await _apiService.AniadirProductoLineaTicket(ticketActual.Id, productoSeleccionado.Id, cantidad);
 
         if (ticketActualizado != null)
         {
             ticketActual = ticketActualizado;
         }
 
+        cantidadNumpad = "";
+        lblCantidadValue.Text = "1";
         await ObtenerLineasTicket();
 
     }
 
+    // Método que elimina la línea completa del producto seleccionado
     private async void btnEliminarProducto_Clicked(object sender, EventArgs e)
     {
         if (lineaSeleccionada != null)
@@ -94,6 +175,8 @@ public partial class OrderView : ContentPage
         }
     }
 
+    // Método que elimina todas las líneas del ticket actual
+    // IMPORTANTE: Las líneas se eliminan pero el ticket sigue existiendo
     private async void btnEliminarTodo_Clicked(object sender, EventArgs e)
     {
         bool confirmacion = await DisplayAlertAsync("Eliminar todo", "¿Estás seguro de que quieres eliminar todas las líneas del ticket?", "Sí", "No");
@@ -107,11 +190,7 @@ public partial class OrderView : ContentPage
         }
     }
 
-    private void btnImprimirCuenta_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
+    // Método que vuelve para el menú de las mesas
     private async void btnSalir_Clicked(object sender, EventArgs e)
     {
         await Navigation.PopAsync();
@@ -122,6 +201,8 @@ public partial class OrderView : ContentPage
 
     }
 
+    // Método que elimina el ticket de la mesa actual y deja la mesa en un estado "LIBRE"
+    // IMPORTANTE: Se elimina el ticket totalmente y se pierde todo el historial 
     private async void btnCancelarTicket_Clicked_1(object sender, EventArgs e)
     {
         try
@@ -148,14 +229,102 @@ public partial class OrderView : ContentPage
         }
     }
 
+    // Método que simula la apertura del cajón del dinero
     private async void btnAbrirCajon_Clicked(object sender, EventArgs e)
     {
         await DisplayAlertAsync("Cajón abierto", "El cajón se ha abierto correctamente", "Aceptar");
     }
 
+    // Evento que gestiona el cambio de linea en el DataGrid
+    // Se guarda la ínea seleccionada de la tabla
+    private async void dataGridLineas_SelectionChanged(object sender, Syncfusion.Maui.DataGrid.DataGridSelectionChangedEventArgs e)
+    {
+        lineaSeleccionada = e.AddedRows?.FirstOrDefault() as LineaTicket;
+
+        if (lineaSeleccionada == null)
+        {
+            return;
+        }
+    }
+
+    private async void btnEditarLinea_Clicked(object sender, EventArgs e)
+    {
+        if (lineaSeleccionada == null)
+        {
+            await DisplayAlertAsync("Error", "No se ha seleccionado ninguna línea", "Aceptar");
+            return;
+        }
+        else
+        {
+            var popup = new ModifyTicketLine(ticketActual, lineaSeleccionada);
+            await this.ShowPopupAsync(popup);
+            lineaSeleccionada = null;
+        }
+        
+    }
+
+    private async void NumpadButton_Clicked(object sender, EventArgs e)
+    {
+        if (sender is not Button boton)
+            return;
+
+        string valorNumpad = boton.Text;
+        string auxValorNumpad;
+
+        if (string.IsNullOrEmpty(cantidadNumpad))
+        {
+            auxValorNumpad = valorNumpad;
+        }
+        else
+        {
+            auxValorNumpad = cantidadNumpad + valorNumpad;
+        }
+
+        if (!int.TryParse(auxValorNumpad, out int nuevoValor))
+        {
+            return;
+        }
+
+        if (nuevoValor < 1 || nuevoValor > 20)
+        {
+            await DisplayAlertAsync("Error", "La cantidad debe estar entre 1 y 20", "Aceptar");
+
+            cantidadNumpad = "";
+            lblCantidadValue.Text = "1";
+            return;
+        }
+
+        cantidadNumpad = auxValorNumpad;
+        lblCantidadValue.Text = cantidadNumpad;
+    }
+
+    private void numPadBorrar_Clicked(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty(cantidadNumpad))
+        {
+            cantidadNumpad = "";
+            lblCantidadValue.Text = "1";
+            return;
+        }
+
+        cantidadNumpad = cantidadNumpad.Substring(0, cantidadNumpad.Length - 1);
+
+        if (string.IsNullOrEmpty(cantidadNumpad))
+        {
+            cantidadNumpad = "";
+            lblCantidadValue.Text = "1";
+        }
+        else
+        {
+            lblCantidadValue.Text = cantidadNumpad;
+        }
+    }
+
+    // Método que actualiza las líneas de la tabla para que se muestren actualizadas al añadir o eliminar una línea
     private async Task ObtenerLineasTicket()
     {
         var ticket = await _apiService.ObtenerTicketMesaActual(mesaActual.Id);
+        ticketActual = ticket;
         Lineas.Clear();
 
         if (ticket.Lineas != null)
@@ -172,15 +341,13 @@ public partial class OrderView : ContentPage
                 });
             }
         }
+
+        ActualizarInfoTicket();
     }
 
-    private async void dataGridLineas_SelectionChanged(object sender, Syncfusion.Maui.DataGrid.DataGridSelectionChangedEventArgs e)
+    private void ActualizarInfoTicket()
     {
-        lineaSeleccionada = e.AddedRows?.FirstOrDefault() as LineaTicket;
-
-        if (lineaSeleccionada == null)
-        {
-            return;
-        }
+        lblTotalIvaValue.Text = $"{ticketActual.TotalIva:N2}";
+        lblImporteTotalValue.Text = $"{ticketActual.Total:N2}";
     }
 }

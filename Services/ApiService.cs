@@ -220,6 +220,38 @@ namespace BarlinkTPV.Services
             var json = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<bool>(json, _jsonOptions);
         }
+
+        // Método para editar la cantidad de un producto en una línea del ticket
+        public async Task<Ticket?> EditarCantidadLineaTicket(string ticketId, string productoId, int nuevaCantidad)
+        {
+            var request = new ActualizarLineaTicketDto
+            {
+                Cantidad = nuevaCantidad
+            };
+            var response = await _httpClient.PatchAsJsonAsync($"tickets/id/{ticketId}/lineas/{productoId}", request);
+            if (!response.IsSuccessStatusCode)
+                return null;
+            return await response.Content.ReadFromJsonAsync<Ticket>(_jsonOptions);
+        }
+
+        // Método para cobrar un ticket
+        public async Task<Cobro> CobrarTicket(string ticketId, string empleadoId, MetodoPago metodoPago, decimal importeEntregado)
+        {
+            var request = new CrearCobroDto
+            {
+                TicketId = ticketId,
+                EmpleadoId = empleadoId,
+                MetodoPago = metodoPago,
+                ImporteEntregado = importeEntregado
+            };
+
+            var response = await _httpClient.PostAsJsonAsync("cobros/crear", request);
+
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            return await response.Content.ReadFromJsonAsync<Cobro>(_jsonOptions);
+        }
         #endregion
     }
 }

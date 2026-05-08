@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup 
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:toolkit ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+            x:Class="BarlinkTPV.Popups.ModifyTicketLine">
+    <Border
+        Padding="20"
+        StrokeThickness="0"
+        StrokeShape="RoundRectangle 20"
+        WidthRequest="350"
+        HeightRequest="200">
+
+        <Grid
+            ColumnDefinitions="Auto,Auto"
+            RowDefinitions="Auto,Auto, Auto"
+            RowSpacing="10"
+            ColumnSpacing="20"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+
+            <Label
+                Grid.Column="0"
+                Grid.Row="0"
+                Text="Cantidad"
+                TextColor="Black"
+                WidthRequest="56"
+                HorizontalOptions="Center"/>
+
+            <Entry
+                x:Name="entryCantidadProducto"
+                Grid.Column="0"
+                Grid.Row="1"
+                HorizontalTextAlignment="Center"/>
+
+            <Label
+                Grid.Column="1"
+                Grid.Row="0"
+                Text="Nombre"
+                TextColor="Black"
+                WidthRequest="120"/>
+
+            <Entry
+                x:Name="entryNombreProducto"
+                Grid.Column="1"
+                Grid.Row="1"
+                WidthRequest="120"
+                IsEnabled="False"/>
+
+            <HorizontalStackLayout
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Spacing="20">
+
+                <Button
+                    x:Name="btnConfirmar"
+                    Style="{StaticResource BotonConfirmar}"
+                    Text="Confirmar"
+                    WidthRequest="120"
+                    HeightRequest="50"
+                    Clicked="btnConfirmar_Clicked"/>
+
+                <Button
+                    x:Name="btnCancelar"
+                    Style="{StaticResource BotonCancelar}"
+                    Text="Cancelar"
+                    WidthRequest="120"
+                    HeightRequest="50"
+                    Clicked="btnCancelar_Clicked"/>
+            </HorizontalStackLayout>
+        </Grid>
+    </Border>
+</toolkit:Popup>

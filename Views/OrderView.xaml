@@ -14,40 +14,62 @@
         ColumnDefinitions="*,*">
 
         <!--#region MITAD IZQUIERDA -->
+        <!-- Contenedor general del lado izquierdo -->
         <Border
             Grid.Column="0"
             Margin="10">
 
+            <!-- Tabla que divide en mitad superior e inferior (Ticket | Teclado) -->
             <Grid
                 RowDefinitions="*,*"
                 RowSpacing="10">
+                
+                <!--#region MITAD SUPERIOR IZQUIERDA -->
+                <!--Tabla que divide la mitad superior en 3 zonas 
+                    Barra de info superior
+                    Tabla de las lineas delticket
+                    Informe del ticket -->
                 <Grid
                     RowDefinitions="Auto,*,Auto"
                     Grid.Row="0"
                     Padding="10"
                     RowSpacing="10">
-
-                    <HorizontalStackLayout
-                        Grid.Row="0"
-                        Padding="5"
-                        Spacing="10"
-                        HorizontalOptions="Center">
+                    <!-- Tabla que muestra la info general de la mesa en la parte superior -->
+                    <Grid
+                        ColumnDefinitions="Auto,*,Auto,*,Auto,Auto"
+                        ColumnSpacing="5"
+                        Padding="5">
                         <Label
+                            Grid.Column="0"
                             Text="MESA Nº: "
                             TextColor="Black"/>
                         <Label
+                            Grid.Column="1"
                             x:Name="lblNumMesa"
                             Text="A20"
                             TextColor="Black"/>
                         <Label
+                            Grid.Column="2"
                             Text="ESTADO: "
-                            TextColor="Black"
-                            Margin="100,0,0,0"/>
+                            TextColor="Black"/>
                         <Label
+                            Grid.Column="3"
                             x:Name="lblEstadoCobro"
                             Text="ABIERTO"
                             TextColor="Black"/>
-                    </HorizontalStackLayout>
+
+                        <Label
+                            Grid.Column="4"
+                            x:Name="lblCantidadTxt"
+                            Text="CANTIDAD:"
+                            TextColor="Black"/>
+
+                        <Label
+                            Grid.Column="5"
+                            x:Name="lblCantidadValue"
+                            Text="1"
+                            TextColor="Black"/>
+                    </Grid>
 
                     <!-- TABLA SYNCFUSION LINEAS -->
                     
@@ -71,12 +93,17 @@
                                 MappingName="Cantidad"
                                 Width="150"
                                 Format="0"/>
-
                             <syncfusion:DataGridTextColumn
                                 HeaderText="Nombre"
                                 MappingName="NombreProducto"
                                 Width="150"/>
 
+                            <syncfusion:DataGridNumericColumn
+                                HeaderText="Precio Ud."
+                                MappingName="PrecioUd"
+                                Format="N2"
+                                />
+                            
                             <syncfusion:DataGridNumericColumn
                                 HeaderText="Subtotal"
                                 MappingName="Total"
@@ -85,15 +112,43 @@
                         </syncfusion:SfDataGrid.Columns>
                     </syncfusion:SfDataGrid>
 
+                    <!-- Contenedor que muestra un informe del ticket en general -->
                     <Border
                         Grid.Row="2"
                         HeightRequest="50">
+                        <Grid
+                            ColumnDefinitions="2*,*,Auto,*,Auto"
+                            VerticalOptions="Center">
+                            <Label
+                                Grid.Column="1"
+                                Text="Total IVA: "
+                                TextColor="Black"
+                                HorizontalOptions="End"
+                                CharacterSpacing="1"
+                                Margin="0,0,5,0"/>
+                            <Label
+                                x:Name="lblTotalIvaValue"
+                                Grid.Column="2"
+                                TextColor="Black"/>
+                            <Label
+                                Grid.Column="3"
+                                Text="Importe Total: "
+                                TextColor="Black"
+                                HorizontalOptions="End"
+                                CharacterSpacing="1"
+                                Margin="0,0,5,0"/>
+                            <Label
+                                x:Name="lblImporteTotalValue"
+                                Grid.Column="4"
+                                TextColor="Black"
+                                Margin="0,0,20,0"/>
+                        </Grid>
 
                     </Border>
-
                 </Grid>
+                <!--#endregion-->
 
-
+                <!--#region MITAD INFERIOR IZQUIERDA -->
                 <Grid
                     Grid.Row="1"
                     ColumnDefinitions="*,*"
@@ -112,76 +167,87 @@
                             Grid.Column="0"
                             Grid.Row="0"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="NumpadButton_Clicked"/>
 
                         <Button
                             Text="8"
                             Grid.Column="1"
                             Grid.Row="0"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="NumpadButton_Clicked"/>
 
                         <Button
                             Text="9"
                             Grid.Column="2"
                             Grid.Row="0"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="NumpadButton_Clicked"/>
 
                         <Button
                             Text="4"
                             Grid.Column="0"
                             Grid.Row="1"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="NumpadButton_Clicked"/>
 
                         <Button
                             Text="5"
                             Grid.Column="1"
                             Grid.Row="1"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="NumpadButton_Clicked"/>
 
                         <Button
                             Text="6"
                             Grid.Column="2"
                             Grid.Row="1"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="NumpadButton_Clicked"/>
 
                         <Button
                             Text="1"
                             Grid.Column="0"
                             Grid.Row="2"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="NumpadButton_Clicked"/>
 
                         <Button
                             Text="2"
                             Grid.Column="1"
                             Grid.Row="2"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="NumpadButton_Clicked"/>
 
                         <Button
                             Text="3"
                             Grid.Column="2"
                             Grid.Row="2"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="NumpadButton_Clicked"/>
 
                         <Button
                             Text="."
                             Grid.Column="0"
                             Grid.Row="3"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="NumpadButton_Clicked"/>
                         <Button
                             Text="0"
                             Grid.Column="1"
                             Grid.Row="3"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="NumpadButton_Clicked"/>
 
                         <Button
                             x:Name="numPadBorrar"
@@ -189,7 +255,8 @@
                             Grid.Column="2"
                             Grid.Row="3"
                             HorizontalOptions="Fill"
-                            VerticalOptions="Fill"/>
+                            VerticalOptions="Fill"
+                            Clicked="numPadBorrar_Clicked"/>
 
                         <Button
                             x:Name="btnAbrirCajon"
@@ -201,37 +268,49 @@
                             Clicked="btnAbrirCajon_Clicked"/>
                     </Grid>
                     <!--#endregion-->
+                    <!--#region BOTONES OPCIONES DE CAJA -->
                     <Grid
                         Grid.Column="1"
                         ColumnDefinitions="*,Auto"
                         RowDefinitions="*,*,*,*,*"
                         ColumnSpacing="10"
                         RowSpacing="10">
+                        <!-- Botón que elimina una sola linea -->
                         <Button
                             x:Name="btnEliminarProducto"
                             Grid.Row="0"
                             Text="Borrar fila"
                             Clicked="btnEliminarProducto_Clicked"/>
+                        
+                        <!-- Botón que elimina todas las lineas -->
                         <Button
                             x:Name="btnEliminarTodo"
                             Grid.Row="1"
                             Text="Borrar todo"
                             Clicked="btnEliminarTodo_Clicked"/>
+                        
+                        <!-- Botón para editar la cantidad de una linea -->
+                        <Button
+                            x:Name="btnEditarLinea"
+                            Grid.Row="2"
+                            Text="Editar línea"
+                            Clicked="btnEditarLinea_Clicked"/>
+                        
+                        <!-- Botón que cancela/borra el ticket de esa mesa -->
                         <Button
                             x:Name="btnCancelarTicket"
-                            Grid.Row="2"
+                            Grid.Row="3"
                             Text="Cancelar ticket"
                             Clicked="btnCancelarTicket_Clicked_1"/>
-                        <Button
-                            x:Name="btnImprimirCuenta"
-                            Grid.Row="3"
-                            Text="Imprimir cuenta"
-                            Clicked="btnImprimirCuenta_Clicked"/>
+                        
+                        <!-- Botón para salir de un ticket (guardando estado) -->
                         <Button
                             x:Name="btnSalir"
                             Grid.Row="4"
                             Text="Salir"
                             Clicked="btnSalir_Clicked"/>
+                        
+                        <!-- Botón para iniciar un cobro -->
                         <Button
                             x:Name="btnCobrar"
                             Grid.Column="1"
@@ -240,8 +319,9 @@
                             Text="COBRAR"
                             Clicked="btnCobrar_Clicked"/>
                     </Grid>
-                    
+                    <!--#endregion-->
                 </Grid>
+                <!--#endregion-->
             </Grid>
             
         </Border>
@@ -330,7 +410,8 @@
                                             Stroke="Orange"
                                             StrokeShape="RoundRectangle 5"
                                             WidthRequest="120"
-                                            HeightRequest="100">
+                                            HeightRequest="100"
+                                            BackgroundColor="Grey">
                                             <VerticalStackLayout
                                                 Spacing="5">
                                                 <Image

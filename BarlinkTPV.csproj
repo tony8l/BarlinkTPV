@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net10.0-android</TargetFrameworks>
@@ -50,6 +50,27 @@
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiImage Include="Resources\Images\Products\Bocadillos\chivito.webp" />
+		<MauiImage Include="Resources\Images\Products\Bocadillos\lomoqueso.png" />
+		<MauiImage Include="Resources\Images\Products\Bocadillos\serranito.png" />
+		<MauiImage Include="Resources\Images\Products\Cafes\americano.png" />
+		<MauiImage Include="Resources\Images\Products\Cafes\bombon.png" />
+		<MauiImage Include="Resources\Images\Products\Cafes\cafeleche.webp" />
+		<MauiImage Include="Resources\Images\Products\Cafes\expresso.png" />
+		<MauiImage Include="Resources\Images\Products\Carnes\chuleton.png" />
+		<MauiImage Include="Resources\Images\Products\Carnes\entrecot.webp" />
+		<MauiImage Include="Resources\Images\Products\Carnes\wagyu.webp" />
+		<MauiImage Include="Resources\Images\Products\Cervezas\cania.png" />
+		<MauiImage Include="Resources\Images\Products\Cervezas\jarralitro.png" />
+		<MauiImage Include="Resources\Images\Products\Cervezas\tercio.png" />
+		<MauiImage Include="Resources\Images\Products\Cubatas\barcelo.jpg" />
+		<MauiImage Include="Resources\Images\Products\Cubatas\beefeater.webp" />
+		<MauiImage Include="Resources\Images\Products\Cubatas\jb.png" />
+		<MauiImage Include="Resources\Images\Products\Cubatas\larios.webp" />
+		<MauiImage Include="Resources\Images\Products\Desayunos\croissant.png" />
+		<MauiImage Include="Resources\Images\Products\Desayunos\napolitana.png" />
+		<MauiImage Include="Resources\Images\Products\Desayunos\zumomelocoton.png" />
+		<MauiImage Include="Resources\Images\Products\Desayunos\zumonaranja.png" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -67,14 +88,80 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\Categories\bocadillos.png" />
+	  <None Remove="Resources\Images\Categories\bocadillosb.png" />
 	  <None Remove="Resources\Images\Categories\cafes.png" />
+	  <None Remove="Resources\Images\Categories\cafesb.png" />
 	  <None Remove="Resources\Images\Categories\carnes.png" />
+	  <None Remove="Resources\Images\Categories\carnesb.png" />
 	  <None Remove="Resources\Images\Categories\cervezas.png" />
+	  <None Remove="Resources\Images\Categories\cervezasb.png" />
 	  <None Remove="Resources\Images\Categories\cubatas.png" />
+	  <None Remove="Resources\Images\Categories\cubatasb.png" />
 	  <None Remove="Resources\Images\Categories\desayunos.png" />
+	  <None Remove="Resources\Images\Categories\desayunosb.png" />
 	  <None Remove="Resources\Images\Categories\licores.png" />
+	  <None Remove="Resources\Images\Categories\licoresb.png" />
 	  <None Remove="Resources\Images\Categories\raciones.png" />
+	  <None Remove="Resources\Images\Categories\racionesb.png" />
+	  <None Remove="Resources\Images\Categories\refrescosb.png" />
 	  <None Remove="Resources\Images\Categories\vinos.png" />
+	  <None Remove="Resources\Images\Categories\vinosb.png" />
+	  <None Remove="Resources\Images\Products\agua.bmp" />
+	  <None Remove="Resources\Images\Products\bjamon.bmp" />
+	  <None Remove="Resources\Images\Products\blomo.bmp" />
+	  <None Remove="Resources\Images\Products\Bocadillos\chivito.webp" />
+	  <None Remove="Resources\Images\Products\Bocadillos\lomoqueso.png" />
+	  <None Remove="Resources\Images\Products\Bocadillos\serranito.png" />
+	  <None Remove="Resources\Images\Products\cafe.bmp" />
+	  <None Remove="Resources\Images\Products\Cafes\americano.png" />
+	  <None Remove="Resources\Images\Products\Cafes\bombon.png" />
+	  <None Remove="Resources\Images\Products\Cafes\cafeleche.webp" />
+	  <None Remove="Resources\Images\Products\Cafes\expresso.png" />
+	  <None Remove="Resources\Images\Products\cania.bmp" />
+	  <None Remove="Resources\Images\Products\cardhu.bmp" />
+	  <None Remove="Resources\Images\Products\Carnes\chuleton.png" />
+	  <None Remove="Resources\Images\Products\Carnes\entrecot.webp" />
+	  <None Remove="Resources\Images\Products\Carnes\wagyu.webp" />
+	  <None Remove="Resources\Images\Products\Cervezas\cania.png" />
+	  <None Remove="Resources\Images\Products\Cervezas\jarralitro.png" />
+	  <None Remove="Resources\Images\Products\Cervezas\tercio.png" />
+	  <None Remove="Resources\Images\Products\cocacola.bmp" />
+	  <None Remove="Resources\Images\Products\colacao.bmp" />
+	  <None Remove="Resources\Images\Products\copablanco.bmp" />
+	  <None Remove="Resources\Images\Products\copatinto.bmp" />
+	  <None Remove="Resources\Images\Products\croissant.bmp" />
+	  <None Remove="Resources\Images\Products\Cubatas\barcelo.jpg" />
+	  <None Remove="Resources\Images\Products\Cubatas\beefeater.webp" />
+	  <None Remove="Resources\Images\Products\Cubatas\jb.png" />
+	  <None Remove="Resources\Images\Products\Cubatas\larios.webp" />
+	  <None Remove="Resources\Images\Products\Desayunos\croissant.png" />
+	  <None Remove="Resources\Images\Products\Desayunos\napolitana.png" />
+	  <None Remove="Resources\Images\Products\Desayunos\zumomelocoton.png" />
+	  <None Remove="Resources\Images\Products\Desayunos\zumonaranja.png" />
+	  <None Remove="Resources\Images\Products\fantalimon.bmp" />
+	  <None Remove="Resources\Images\Products\fantanaranja.bmp" />
+	  <None Remove="Resources\Images\Products\hierbas.bmp" />
+	  <None Remove="Resources\Images\Products\jarralitro.bmp" />
+	  <None Remove="Resources\Images\Products\larios.bmp" />
+	  <None Remove="Resources\Images\Products\Licores\licorhierbas.png" />
+	  <None Remove="Resources\Images\Products\Licores\orujo.png" />
+	  <None Remove="Resources\Images\Products\orujo.bmp" />
+	  <None Remove="Resources\Images\Products\Raciones\patatasbravas.png" />
+	  <None Remove="Resources\Images\Products\Raciones\rabofrito.png" />
+	  <None Remove="Resources\Images\Products\rcalamares.bmp" />
+	  <None Remove="Resources\Images\Products\Refrescos\cocacola.png" />
+	  <None Remove="Resources\Images\Products\Refrescos\fantalimon.png" />
+	  <None Remove="Resources\Images\Products\Refrescos\fantanaranja.png" />
+	  <None Remove="Resources\Images\Products\sidragaitero.bmp" />
+	  <None Remove="Resources\Images\Products\surtidoibericos.bmp" />
+	  <None Remove="Resources\Images\Products\tostadaaceite.bmp" />
+	  <None Remove="Resources\Images\Products\vinoblanco.bmp" />
+	  <None Remove="Resources\Images\Products\Vinos\botvinoblanco.png" />
+	  <None Remove="Resources\Images\Products\Vinos\botvinotinto.png" />
+	  <None Remove="Resources\Images\Products\Vinos\copablanco.png" />
+	  <None Remove="Resources\Images\Products\Vinos\copatinto.webp" />
+	  <None Remove="Resources\Images\Products\vinotinto.bmp" />
+	  <None Remove="Resources\Images\Products\zumonaranja.bmp" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -88,6 +175,18 @@
 	  <MauiImage Include="Resources\Images\Categories\raciones.png" />
 	  <MauiImage Include="Resources\Images\Categories\refrescos.png" />
 	  <MauiImage Include="Resources\Images\Categories\vinos.png" />
+	  <MauiImage Include="Resources\Images\Products\Raciones\patatasbravas.png" />
+	  <MauiImage Include="Resources\Images\Products\Raciones\rabofrito.png" />
+	  <MauiImage Include="Resources\Images\Products\Raciones\rcalamares.bmp" />
+	  <MauiImage Include="Resources\Images\Products\Raciones\surtidoibericos.bmp" />
+	  <MauiImage Include="Resources\Images\Products\Refrescos\agua.png" />
+	  <MauiImage Include="Resources\Images\Products\Refrescos\cocacola.png" />
+	  <MauiImage Include="Resources\Images\Products\Refrescos\fantalimon.png" />
+	  <MauiImage Include="Resources\Images\Products\Refrescos\fantanaranja.png" />
+	  <MauiImage Include="Resources\Images\Products\Vinos\botvinoblanco.png" />
+	  <MauiImage Include="Resources\Images\Products\Vinos\botvinotinto.png" />
+	  <MauiImage Include="Resources\Images\Products\Vinos\copablanco.png" />
+	  <MauiImage Include="Resources\Images\Products\Vinos\copatinto.webp" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -118,6 +217,9 @@
 	  <MauiXaml Update="Navigation\UserNavigation.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Popups\ModifyTicketLine.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Popups\WorkerRegPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -139,6 +241,11 @@
 	  <MauiXaml Update="Views\UsersManagementView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\Products\Licores\licorhierbas.png" />
+	  <MauiImage Include="Resources\Images\Products\Licores\orujo.png" />
 	</ItemGroup>
 
 </Project>

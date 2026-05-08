@@ -10,8 +10,8 @@ namespace BarlinkTPV.Models
         public string NombreProducto { get; set; }
         public decimal PrecioUd { get; set; }
         public int Cantidad { get; set; }
-        public decimal SubTotal => PrecioUd * Cantidad;
         public int Iva { get; set; }
-        public decimal Total => SubTotal * (1 + (Iva / 100m));
+        public decimal SubTotal => (PrecioUd / (1+(Iva/100m))) * Cantidad;
+        public decimal Total => PrecioUd * Cantidad;
     }
 }
