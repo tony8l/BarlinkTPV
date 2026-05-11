@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarlinkTPV.Views.SettingsView"
+             Title="SettingsView">
+    <Grid
+        BackgroundColor="{DynamicResource ColorFondoPrincipal}">
+
+        <Border
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            HeightRequest="500"
+            WidthRequest="350">
+
+            <VerticalStackLayout
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Spacing="10">
+
+                <Label
+                    Style="{DynamicResource Label}"
+                    Text="Selecciona un tema"/>
+
+                <Button
+                    x:Name="btnTemaPredeterminado"
+                    Text="Tema predeterminado"
+                    Clicked="btnTemaPredeterminado_Clicked"/>
+
+                <Button
+                    x:Name="btnTemaClaro"
+                    Text="Tema Claro"
+                    Clicked="btnTemaClaro_Clicked"/>
+
+                <Button
+                    x:Name="btnTemaOscuro"
+                    Text="Tema Oscuro"
+                    Clicked="btnTemaOscuro_Clicked"/>
+                
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

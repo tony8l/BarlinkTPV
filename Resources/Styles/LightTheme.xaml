@@ -1,48 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BarlinkTPV.Resources.Styles.MainTheme">
+             x:Class="BarlinkTPV.Resources.Styles.LightTheme">
 
     <!-- ========================= -->
-    <!-- Colores -->
+    <!-- Colores CLAROS accesibles -->
     <!-- ========================= -->
 
     <Color x:Key="ColorTextoGrande">#1F2933</Color>
     <Color x:Key="ColorTextoPequeno">#5B6870</Color>
 
-    <Color x:Key="ColorBotonPrincipalFondo">#2F6D67</Color>
-    <Color x:Key="ColorBotonPrincipalTexto">#FFFDF8</Color>
+    <Color x:Key="ColorBotonPrincipalFondo">#0072B2</Color>
+    <Color x:Key="ColorBotonPrincipalTexto">#FFFFFF</Color>
 
     <Color x:Key="ColorBotonAlternativoFondo">#F3EFE7</Color>
-    <Color x:Key="ColorBotonAlternativoTexto">#285A55</Color>
+    <Color x:Key="ColorBotonAlternativoTexto">#1F2933</Color>
 
-    <Color x:Key="ColorBotonCancelarFondo">#FF2B1C</Color>
-    <Color x:Key="ColorBotonCancelarTexto">#FFFDF8</Color>
+    <Color x:Key="ColorBotonCancelarFondo">#D55E00</Color>
+    <Color x:Key="ColorBotonCancelarTexto">#FFFFFF</Color>
 
-    <Color x:Key="ColorBorder">#D7DCCD</Color>
+    <Color x:Key="ColorBorder">#C8D0D4</Color>
 
-    <Color x:Key="ColorFondoPrincipal">#F8F6F1</Color>
-    <Color x:Key="ColorFondoContenedores">#FFFCF7</Color>
-    <Color x:Key="ColorFondoAlternativo">#5A928C</Color>
-    <Color x:Key="ColorFondoFlyout">#5A928C</Color>
+    <Color x:Key="ColorFondoPrincipal">#F7F6F2</Color>
+    <Color x:Key="ColorFondoContenedores">#FFFDF9</Color>
+    <Color x:Key="ColorFondoAlternativo">#D9ECF7</Color>
+    <Color x:Key="ColorFondoFlyout">#EAF4FB</Color>
 
-    <Color x:Key="ColorPanelSecundario">#EFE9DE</Color>
+    <Color x:Key="ColorPanelSecundario">#ECE7DE</Color>
 
-    <Color x:Key="ColorBotonCriticoFondo">#D96C3F</Color>
-    <Color x:Key="ColorBotonCriticoTexto">#FFFDF9</Color>
+    <Color x:Key="ColorBotonCriticoFondo">#E69F00</Color>
+    <Color x:Key="ColorBotonCriticoTexto">#1F2933</Color>
 
-    <Color x:Key="ColorBotonDeshabilitadoFondo">#C9D1C7</Color>
-    <Color x:Key="ColorBotonDeshabilitadoTexto">#8B959A</Color>
+    <Color x:Key="ColorBotonDeshabilitadoFondo">#D6DADB</Color>
+    <Color x:Key="ColorBotonDeshabilitadoTexto">#7A848A</Color>
 
-    <Color x:Key="ColorEntryFondo">#FDFBF8</Color>
-    <Color x:Key="ColorPlaceholder">#9AA4A6</Color>
+    <Color x:Key="ColorEntryFondo">#FCFBF8</Color>
+    <Color x:Key="ColorPlaceholder">#7F8A91</Color>
     <Color x:Key="ColorEntryDeshabilitadoFondo">#ECE8E1</Color>
-    <Color x:Key="ColorEntryDeshabilitadoTexto">#7E878C</Color>
-    <Color x:Key="ColorEntryDeshabilitadoPlaceholder">#A8B0B3</Color>
+    <Color x:Key="ColorEntryDeshabilitadoTexto">#6E777D</Color>
+    <Color x:Key="ColorEntryDeshabilitadoPlaceholder">#98A1A8</Color>
 
-    <Color x:Key="ColorTarjetasMesa">#5A928C</Color>
-    <Color x:Key="ColorTarjetasMesaOcuapda">#D96C3F</Color>
-    <Color x:Key="ColorTarjetasProdCat">Orange</Color>
+    <Color x:Key="ColorTarjetasMesa">#0072B2</Color>
+    <Color x:Key="ColorTarjetasMesaOcupada">#E69F00</Color>
+    <Color x:Key="ColorTarjetasProdCat">#D55E00</Color>
 
     <!-- ========================= -->
     <!-- Elementos genéricos -->
@@ -261,4 +261,6 @@
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="VerticalOptions" Value="Center"/>
     </Style>
+
+
 </ResourceDictionary>

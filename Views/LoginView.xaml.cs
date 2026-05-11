@@ -1,18 +1,23 @@
 using BarlinkTPV.Models;
+using BarlinkTPV.Models.DTOs;
 using BarlinkTPV.Navigation;
 using BarlinkTPV.Services;
 using BarlinkTPV.Singleton;
+using BarlinkTPV.Resources.Languages;
+using BarlinkTPV.Resources.Styles;
 namespace BarlinkTPV.Views;
 
 public partial class LoginView : ContentPage
 {
 	public readonly GlobalData globalData;
     private ApiService _apiService;
+    private SettingsService ajustes;
 	public LoginView(GlobalData globalData, ApiService apiService)
 	{
 		InitializeComponent();
 		this.globalData = globalData;
         _apiService = apiService;
+        ajustes = new SettingsService();
     }
 
     private async void btnIniciarSesion_Clicked(object sender, EventArgs e)
@@ -44,6 +49,21 @@ public partial class LoginView : ContentPage
             globalData.NombreUsuario = usuario.Nombre;
             globalData.RolUsuario = usuario.Rol;
             globalData.UltimoTipoFichaje = ultimoFichaje?.TipoFichaje;
+
+            var ajustesUsuario = await _apiService.ObtenerAjustesUsuario(usuario.Id);
+
+            if (ajustesUsuario == null)
+            {
+                ajustesUsuario = await _apiService.CrearAjustes(usuario.Id);
+            }
+
+            if (ajustesUsuario != null)
+            {
+                globalData.AjustesActualesId = ajustesUsuario.Id;
+                globalData.TemaActual = ajustesUsuario.Tema;
+                globalData.IdiomaActual = ajustesUsuario.Idioma;
+                ajustes.AplicarAjustes(ajustesUsuario);
+            }
 
             if (usuario.Rol == RolUsuario.Camarero)
             {

@@ -39,4 +39,9 @@ public partial class HomeView : ContentPage
     {
         Application.Current.Quit();
     }
+
+    private async void btnConfiguracion_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("///SettingsView");
+    }
 }

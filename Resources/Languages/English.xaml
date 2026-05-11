@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarlinkTPV.Resources.Languages.English">
+
+    <!-- HomeView -->
+    <x:String x:Key="HomeView_EmpleadoActual">Current Employee:</x:String>
+    <x:String x:Key="HomeView_Fichar">⌚ CLOCK IN/OUT</x:String>
+    <x:String x:Key="HomeView_Caja">💰 POS REGISTER</x:String>
+    <x:String x:Key="HomeView_Configuracion">🔧 SETTINGS</x:String>
+    <x:String x:Key="HomeView_CerrarSesion">⛔ LOG OUT</x:String>
+
+    <!-- LoginView -->
+    <x:String x:Key="LoginView_Titulo">BARLINK POS</x:String>
+    <x:String x:Key="LoginView_PlaceholderDni">Enter your ID</x:String>
+    <x:String x:Key="LoginView_IniciarSesion">Log In</x:String>
+
+    <!-- OrderView -->
+    <x:String x:Key="OrderView_MesaNumero">TABLE NO.:</x:String>
+    <x:String x:Key="OrderView_Estado">STATUS:</x:String>
+    <x:String x:Key="OrderView_CantidadTexto">QUANTITY:</x:String>
+    <x:String x:Key="OrderView_Col_Cantidad">Quantity</x:String>
+    <x:String x:Key="OrderView_Col_Nombre">Name</x:String>
+    <x:String x:Key="OrderView_Col_PrecioUd">Unit Price</x:String>
+    <x:String x:Key="OrderView_Col_Subtotal">Subtotal</x:String>
+
+    <x:String x:Key="OrderView_TotalIva">VAT Total:</x:String>
+    <x:String x:Key="OrderView_ImporteTotal">Total Amount:</x:String>
+
+    <x:String x:Key="OrderView_AbrirCajon">OPEN DRAWER</x:String>
+    <x:String x:Key="OrderView_BorrarFila">Delete row</x:String>
+    <x:String x:Key="OrderView_BorrarTodo">Delete all</x:String>
+    <x:String x:Key="OrderView_EditarLinea">Edit line</x:String>
+    <x:String x:Key="OrderView_CancelarTicket">Cancel ticket</x:String>
+    <x:String x:Key="OrderView_Salir">Exit</x:String>
+    <x:String x:Key="OrderView_Cobrar">PAY</x:String>
+
+    <!-- PosView -->
+    <x:String x:Key="PosView_Sala">Indoor</x:String>
+    <x:String x:Key="PosView_Terraza">Terrace</x:String>
+    <x:String x:Key="PosView_BloqueadaFormato">Blocked: {0}</x:String>
+
+    <!-- ModifyTicketLine Popup -->
+    <x:String x:Key="ModifyLinePopup_Cantidad">Quantity</x:String>
+    <x:String x:Key="ModifyLinePopup_Nombre">Name</x:String>
+    <x:String x:Key="ModifyLinePopup_Confirmar">Confirm</x:String>
+    <x:String x:Key="ModifyLinePopup_Cancelar">Cancel</x:String>
+
+    <!-- WorkerRegPopup -->
+    <x:String x:Key="WorkerRegPopup_Titulo">Time Clock</x:String>
+    <x:String x:Key="WorkerRegPopup_SeleccionaOpcion">Select an option</x:String>
+    <x:String x:Key="WorkerRegPopup_Entrada">Clock in</x:String>
+    <x:String x:Key="WorkerRegPopup_Salida">Clock out</x:String>
+    <x:String x:Key="WorkerRegPopup_Cancelar">Cancel</x:String>
+</ResourceDictionary>

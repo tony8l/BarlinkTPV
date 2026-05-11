@@ -4,13 +4,13 @@ using CommunityToolkit.Maui.Views;
 
 namespace BarlinkTPV.Popups;
 
-public partial class ModifyTicketLine : Popup
+public partial class ModifyTicketLinePopup : Popup
 {
 	private Ticket ticketActual;
 	private LineaTicket lineaTicket;
 	private readonly ApiService _apiService;
 
-	public ModifyTicketLine(Ticket ticket, LineaTicket lineaTicket)
+	public ModifyTicketLinePopup(Ticket ticket, LineaTicket lineaTicket)
 	{
 		InitializeComponent();
 		this.ticketActual = ticket;

@@ -1,4 +1,5 @@
 using BarlinkTPV.Models;
+using BarlinkTPV.Models.DTOs;
 using BarlinkTPV.Popups;
 using BarlinkTPV.Services;
 using BarlinkTPV.Singleton;
@@ -9,6 +10,8 @@ namespace BarlinkTPV.Views;
 
 public partial class OrderView : ContentPage
 {
+    private GlobalData globalData;
+
     // Variables para guardar el estado actual recibido por el constructor
 	private Mesa mesaActual;
 	private Ticket ticketActual;
@@ -27,12 +30,13 @@ public partial class OrderView : ContentPage
     private LineaTicket? lineaSeleccionada = new LineaTicket();
 
     private string cantidadNumpad = "";
-    public OrderView(Mesa mesa, Ticket ticket)
+    public OrderView(Mesa mesa, Ticket ticket, GlobalData globalData)
 	{
         _apiService = new ApiService();
 		InitializeComponent();
 		this.mesaActual = mesa;
 		this.ticketActual = ticket;
+        this.globalData = globalData;
         lineaSeleccionada = null;
         BindingContext = this;
 	}
@@ -68,6 +72,25 @@ public partial class OrderView : ContentPage
                 "Cervezas" => "cervezas.png",
                 _ => "default.png"
             };
+
+            if(globalData.IdiomaActual == Idioma.ENG)
+            {
+                categoria.Nombre = categoria.Nombre switch
+                {
+                    "Refrescos" => "Soft Drinks",
+                    "Bocadillos" => "Sandwiches",
+                    "Cafés" => "Coffee",
+                    "Desayunos" => "Breakfast",
+                    "Raciones" => "Sharing Plates",
+                    "Licores" => "Liqueurs",
+                    "Cubatas" => "Mixed Drinks",
+                    "Vinos" => "Wines",
+                    "Carnes" => "Meat Dishes",
+                    "Ensaladas" => "Salads",
+                    "Cervezas" => "Beers",
+                    _ => categoria.Nombre
+                };
+            }
         }
 
         categoriasCollection.ItemsSource = categorias;
@@ -128,6 +151,51 @@ public partial class OrderView : ContentPage
                 "Botella Vino Tinto" => "botvinotinto.png",
                 _ => "default.png"
             };
+
+            if(globalData.IdiomaActual == Idioma.ENG)
+            {
+                producto.Nombre = producto.Nombre switch
+                {
+                    "Bocadillo Chivito" => "Chivito Large Sandwich",
+                    "Bocadillo Lomo-Queso" => "Pork Loin & Cheese Large Sandwich",
+                    "Bocadillo Serranito" => "Serranito Large Sandwich",
+                    "Montado Lomo-Queso" => "Pork Loin & Cheese Small Sandwich",
+                    "Montado Serranito" => "Serranito Small Sandwich",
+                    "Café Expresso" => "Espresso Coffee",
+                    "Café Cortado" => "Cortado Coffee",
+                    "Café Americano" => "Americano Coffee",
+                    "Café Bombon" => "Bombon Coffee",
+                    "Chuletón Vaca" => "Beef Rib Steak (Bone-in)",
+                    "Entrecot" => "Ribeye Steak (Boneless)",
+                    "Chuletón Wagyu" => "Wagyu Rib Steak (Bone-in)",
+                    "Caña" => "Small Beer Draft",
+                    "Jarra" => "Beer Pitcher",
+                    "Tercio" => "Tercio Beer (1/3 Liter)",
+                    "Copa Barceló" => "Barceló Rum Glass",
+                    "Copa JB" => "JB Whiskey Glass",
+                    "Copa Larios" => "Larios Gin Glass",
+                    "Copa Beefeater" => "Beefeater Gin Glass",
+                    "Croissant" => "Croissant",
+                    "Napolitana" => "Napolitana Pastry",
+                    "Zumo Naranja" => "Fresh Orange Juice",
+                    "Zumo Melocotón" => "Fresh Peach Juice",
+                    "Chupito Hierbas" => "Herbal Liqueur Shot",
+                    "Chupito Orujo" => "Orujo Liqueur Shot",
+                    "Patatas Bravas" => "Patatas Bravas",
+                    "Rabo Frito" => "Fried Oxtail",
+                    "Calamares" => "Fried Calamari",
+                    "Surtido Ibérico" => "Iberian Charcuterie Assortment",
+                    "Agua" => "Water",
+                    "Coca Cola" => "Coca Cola",
+                    "Fanta Naranja" => "Fanta Orange",
+                    "Fanta Limón" => "Fanta Lemon",
+                    "Copa Vino Blanco" => "White Wine Glass",
+                    "Copa Vino Tinto" => "Red Wine Glass",
+                    "Botella Vino Blanco" => "White Wine Bottle",
+                    "Botella Vino Tinto" => "Red Wine Bottle",
+                    _ => producto.Nombre
+                };
+            }
         }
         productosCollection.ItemsSource = productos;
     }
@@ -172,6 +240,7 @@ public partial class OrderView : ContentPage
         {
             await _apiService.EliminarLineaTicket(ticketActual.Id, lineaSeleccionada.ProductoId);
             await ObtenerLineasTicket();
+            lineaSeleccionada = null;
         }
     }
 
@@ -187,6 +256,7 @@ public partial class OrderView : ContentPage
         { 
             await _apiService.EliminarTodasLasLineasTicket(ticketActual.Id);
             await ObtenerLineasTicket();
+            lineaSeleccionada = null;
         }
     }
 
@@ -256,7 +326,7 @@ public partial class OrderView : ContentPage
         }
         else
         {
-            var popup = new ModifyTicketLine(ticketActual, lineaSeleccionada);
+            var popup = new ModifyTicketLinePopup(ticketActual, lineaSeleccionada);
             await this.ShowPopupAsync(popup);
             lineaSeleccionada = null;
         }
@@ -347,7 +417,7 @@ public partial class OrderView : ContentPage
 
     private void ActualizarInfoTicket()
     {
-        lblTotalIvaValue.Text = $"{ticketActual.TotalIva:N2}";
-        lblImporteTotalValue.Text = $"{ticketActual.Total:N2}";
+        lblTotalIvaValue.Text = $"{ticketActual.TotalIva:N2} €";
+        lblImporteTotalValue.Text = $"{ticketActual.Total:N2} €";
     }
 }

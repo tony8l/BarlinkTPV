@@ -1,5 +1,6 @@
 using BarlinkTPV.Services;
 using BarlinkTPV.Models;
+using BarlinkTPV.Singleton;
 
 namespace BarlinkTPV.Views;
 
@@ -7,11 +8,13 @@ public partial class PosView : ContentPage
 {
     private readonly ApiService _apiService;
     private List<Mesa> mesas = new List<Mesa>();
+    private GlobalData globalData;
 
-    public PosView()
+    public PosView(GlobalData globalData)
     {
         InitializeComponent();
         _apiService = new ApiService();
+        this.globalData = globalData;
     }
 
     protected override async void OnAppearing()
@@ -55,11 +58,7 @@ public partial class PosView : ContentPage
         {
             return;
         }
-       
-        // Debug
-        await DisplayAlertAsync("Mesa seleccionada", "Has seleccionado la mesa " + mesaSeleccionada.CodigoMesa, "Aceptar");
         await MesaSeleccionadaEvents(mesaSeleccionada);
-
     }
 
     public async Task MesaSeleccionadaEvents(Mesa mesaSeleccionada)
@@ -81,7 +80,7 @@ public partial class PosView : ContentPage
             }
 
             mesaSeleccionada.EstadoMesa = EstadoMesa.Ocupada;
-            await Navigation.PushAsync(new OrderView(mesaSeleccionada, ticket));
+            await Navigation.PushAsync(new OrderView(mesaSeleccionada, ticket, globalData));
         }
 
         else
@@ -94,7 +93,7 @@ public partial class PosView : ContentPage
                 return;
             }
 
-            await Navigation.PushAsync(new OrderView(mesaSeleccionada, ticket));
+            await Navigation.PushAsync(new OrderView(mesaSeleccionada, ticket, globalData));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BarlinkTPV.Models;
+using BarlinkTPV.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,9 @@ namespace BarlinkTPV.Singleton
         public TipoFichaje? UltimoTipoFichaje { get; set; }
 
         
+        public string AjustesActualesId { get; set; }
+        public Tema TemaActual { get; set; }
+        public Idioma IdiomaActual {  get; set; }
 
         public void CerrarSesion()
         {

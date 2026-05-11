@@ -8,7 +8,7 @@
     <Border
         Padding="20"
         StrokeThickness="0"
-        BackgroundColor="{StaticResource ColorFondoContenedores}"
+        BackgroundColor="{DynamicResource ColorFondoContenedores}"
         StrokeShape="RoundRectangle 20">
 
         <VerticalStackLayout
@@ -16,30 +16,30 @@
             VerticalOptions="Center"
             Spacing="15">
             <Label
-                Style="{StaticResource LabelTextoGrande}"
-                Text="Fichaje"
+                Style="{DynamicResource LabelTextoGrande}"
+                Text="{DynamicResource WorkerRegPopup_Titulo}"
                 HorizontalOptions="Center"/>
 
             <Label
                 x:Name="lblEstado"
-                Style="{StaticResource Label}"
-                Text="Selecciona una opción"
+                Style="{DynamicResource Label}"
+                Text="{DynamicResource WorkerRegPopup_SeleccionaOpcion}"
                 HorizontalOptions="Center" />
 
             <Button
                 x:Name="btnEntrada"
-                Text="Fichar entrada"
+                Text="{DynamicResource WorkerRegPopup_Entrada}"
                 Clicked="btnEntrada_Clicked"/>
 
             <Button
                 x:Name="btnSalida"
-                Text="Fichar salida"
+                Text="{DynamicResource WorkerRegPopup_Salida}"
                 Clicked="btnSalida_Clicked"/>
 
             <Button
                 x:Name="btnCancelar"
-                Text="Cancelar"
-                Style="{StaticResource BotonCancelar}"
+                Text="{DynamicResource WorkerRegPopup_Cancelar}"
+                Style="{DynamicResource BotonCancelar}"
                 Clicked="btnCancelar_Clicked"/>
             
         </VerticalStackLayout>

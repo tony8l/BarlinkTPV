@@ -7,8 +7,8 @@
     <Grid
         RowDefinitions="Auto,*,Auto,*">
         <Label 
-            Text="Sala"
-            TextColor="Black"
+            Text="{DynamicResource PosView_Sala}"
+            Style="{DynamicResource Label}"
             Grid.Row="0"/>
 
         <ScrollView Grid.Row="1">
@@ -23,10 +23,30 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Border Padding="12"
-                                    Margin="6"
-                                    BackgroundColor="Black">
+                            <Border
+                                x:Name="borderMesasSala"
+                                Style="{DynamicResource CardMesa}">
 
+                                <Border.Triggers>
+                                    <DataTrigger 
+                                        TargetType="Border"
+                                        Binding="{Binding EstadoMesa}"
+                                        Value="Libre">
+                                        <Setter 
+                                            Property="BackgroundColor" 
+                                            Value="{DynamicResource ColorTarjetasMesa}"/>
+                                    </DataTrigger>
+
+                                    <DataTrigger 
+                                        TargetType="Border"
+                                        Binding="{Binding EstadoMesa}"
+                                        Value="Ocupada">
+                                        <Setter 
+                                            Property="BackgroundColor" 
+                                            Value="{DynamicResource ColorTarjetasMesaOcupada}" />
+                                    </DataTrigger>
+                                </Border.Triggers>
+                                
                                 <VerticalStackLayout Spacing="8">
                                     <Label Text="{Binding CodigoMesa}"
                                            FontSize="20"
@@ -41,7 +61,7 @@
                                            FontSize="16"
                                            TextColor="Orange" />
 
-                                    <Label Text="{Binding Bloqueada, StringFormat='Bloqueada: {0}'}"
+                                    <Label Text="{Binding Bloqueada, StringFormat='{DynamicResource PosView_Bloqueada}'}"
                                        FontSize="14"
                                        TextColor="LightGray" />
                                 </VerticalStackLayout>
@@ -53,8 +73,8 @@
         </ScrollView>
 
         <Label 
-            Text="Terraza"
-            TextColor="Black"
+            Text="{DynamicResource PosView_Terraza}"
+            Style="{DynamicResource Label}"
             Grid.Row="2"/>
 
         <ScrollView Grid.Row="3">
@@ -69,9 +89,9 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Border Padding="12"
-                                Margin="6"
-                                Background="Black">
+                            <Border 
+                                x:Name="borderMesasTerraza"
+                                Style="{DynamicResource CardMesa}">
 
                                 <VerticalStackLayout Spacing="8">
                                     <Label 
@@ -91,7 +111,7 @@
                                         TextColor="Orange" />
 
                                     <Label 
-                                        Text="{Binding Bloqueada, StringFormat='Bloqueada: {0}'}"
+                                        Text="{Binding Bloqueada, StringFormat='{DynamicResource PosView_BloqueadaFormato}'}"
                                         FontSize="14"
                                         TextColor="LightGray" />
                                 </VerticalStackLayout>

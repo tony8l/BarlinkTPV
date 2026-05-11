@@ -253,5 +253,46 @@ namespace BarlinkTPV.Services
             return await response.Content.ReadFromJsonAsync<Cobro>(_jsonOptions);
         }
         #endregion
+
+        #region MÉTODOS DE AJUSTES
+        public async Task<Ajustes?> CrearAjustes(string usuarioId)
+        {
+            var request = new CrearAjusteDto
+            {
+                UsuarioId = usuarioId,
+                Tema = Tema.Predeterminado,
+                Idioma = Idioma.ES
+            };
+
+            var response = await _httpClient.PostAsJsonAsync("ajustes/crear", request);
+
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            return await response.Content.ReadFromJsonAsync<Ajustes>(_jsonOptions);
+        }
+
+        public async Task<Ajustes?> ObtenerAjustesUsuario(string usuarioId)
+        {
+            var response = await _httpClient.GetAsync($"ajustes/{usuarioId}");
+            if (!response.IsSuccessStatusCode)
+                return null;
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<Ajustes>(json, _jsonOptions);
+        }
+
+        public async Task<Ajustes?> EditarAjustes(string ajustesId, Tema tema, Idioma idioma)
+        {
+            var request = new ActualizarAjustesDto
+            {
+                Tema = tema,
+                Idioma = idioma
+            };
+            var response = await _httpClient.PatchAsJsonAsync($"ajustes/{ajustesId}", request);
+            if (!response.IsSuccessStatusCode)
+                return null;
+            return await response.Content.ReadFromJsonAsync<Ajustes>(_jsonOptions);
+        }
+        #endregion
     }
 }

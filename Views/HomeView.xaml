@@ -19,7 +19,7 @@
                 Spacing="10">
 
                 <Label
-                    Text="Empleado Actual:"
+                    Text="{DynamicResource HomeView_EmpleadoActual}"
                     Style="{DynamicResource LabelTextoGrande}"
                     HorizontalOptions="Center"/>
                 <Label
@@ -29,18 +29,19 @@
                     Margin="0,0,0,30"/>
                 <Button
                     x:Name="btnFichar"
-                    Text="⌚ FICHAR"
+                    Text="{DynamicResource HomeView_Fichar}"
                     Clicked="btnFichar_Clicked"/>
                 <Button
                     x:Name="btnCaja"
-                    Text="💰 CAJA"
+                    Text="{DynamicResource HomeView_Caja}"
                     Clicked="btnCaja_Clicked"/>
                 <Button
                     x:Name="btnConfiguracion"
-                    Text="🔧 CONFIGURACIÓN"/>
+                    Text="{DynamicResource HomeView_Configuracion}"
+                    Clicked="btnConfiguracion_Clicked"/>
                 <Button
                     x:Name="btnCerrarSesion"
-                    Text="⛔ CERRAR SESIÓN"
+                    Text="{DynamicResource HomeView_CerrarSesion}"
                     Clicked="btnCerrarSesion_Clicked"/>
 
                 <ImageButton

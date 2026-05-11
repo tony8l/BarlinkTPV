@@ -41,34 +41,32 @@
                         Padding="5">
                         <Label
                             Grid.Column="0"
-                            Text="MESA Nº: "
-                            TextColor="Black"/>
+                            Text="{DynamicResource OrderView_MesaNumero}"
+                            Style="{DynamicResource Label}"/>
                         <Label
                             Grid.Column="1"
                             x:Name="lblNumMesa"
-                            Text="A20"
-                            TextColor="Black"/>
+                            Style="{DynamicResource Label}"/>
                         <Label
                             Grid.Column="2"
-                            Text="ESTADO: "
-                            TextColor="Black"/>
+                            Text="{DynamicResource OrderView_Estado}"
+                            Style="{DynamicResource Label}"/>
                         <Label
                             Grid.Column="3"
                             x:Name="lblEstadoCobro"
-                            Text="ABIERTO"
-                            TextColor="Black"/>
+                            Style="{DynamicResource Label}"/>
 
                         <Label
                             Grid.Column="4"
                             x:Name="lblCantidadTxt"
-                            Text="CANTIDAD:"
-                            TextColor="Black"/>
+                            Text="{DynamicResource OrderView_CantidadTexto}"
+                            Style="{DynamicResource Label}"/>
 
                         <Label
                             Grid.Column="5"
                             x:Name="lblCantidadValue"
                             Text="1"
-                            TextColor="Black"/>
+                            Style="{DynamicResource Label}"/>
                     </Grid>
 
                     <!-- TABLA SYNCFUSION LINEAS -->
@@ -105,7 +103,7 @@
                                 />
                             
                             <syncfusion:DataGridNumericColumn
-                                HeaderText="Subtotal"
+                                HeaderText="Total"
                                 MappingName="Total"
                                 Format="N2"
                                 />
@@ -121,26 +119,26 @@
                             VerticalOptions="Center">
                             <Label
                                 Grid.Column="1"
-                                Text="Total IVA: "
-                                TextColor="Black"
+                                Text="{DynamicResource OrderView_TotalIva}"
+                                Style="{DynamicResource Label}"
                                 HorizontalOptions="End"
                                 CharacterSpacing="1"
                                 Margin="0,0,5,0"/>
                             <Label
                                 x:Name="lblTotalIvaValue"
                                 Grid.Column="2"
-                                TextColor="Black"/>
+                                Style="{DynamicResource Label}"/>
                             <Label
                                 Grid.Column="3"
-                                Text="Importe Total: "
-                                TextColor="Black"
+                                Text="{DynamicResource OrderView_ImporteTotal}"
+                                Style="{DynamicResource Label}"
                                 HorizontalOptions="End"
                                 CharacterSpacing="1"
                                 Margin="0,0,5,0"/>
                             <Label
                                 x:Name="lblImporteTotalValue"
                                 Grid.Column="4"
-                                TextColor="Black"
+                                Style="{DynamicResource Label}"
                                 Margin="0,0,20,0"/>
                         </Grid>
 
@@ -260,7 +258,7 @@
 
                         <Button
                             x:Name="btnAbrirCajon"
-                            Text="ABRIR CAJÓN"
+                            Text="{DynamicResource OrderView_AbrirCajon}"
                             Grid.Row="4"
                             Grid.ColumnSpan="3"
                             HorizontalOptions="Fill"
@@ -279,35 +277,35 @@
                         <Button
                             x:Name="btnEliminarProducto"
                             Grid.Row="0"
-                            Text="Borrar fila"
+                            Text="{DynamicResource OrderView_BorrarFila}"
                             Clicked="btnEliminarProducto_Clicked"/>
                         
                         <!-- Botón que elimina todas las lineas -->
                         <Button
                             x:Name="btnEliminarTodo"
                             Grid.Row="1"
-                            Text="Borrar todo"
+                            Text="{DynamicResource OrderView_BorrarTodo}"
                             Clicked="btnEliminarTodo_Clicked"/>
                         
                         <!-- Botón para editar la cantidad de una linea -->
                         <Button
                             x:Name="btnEditarLinea"
                             Grid.Row="2"
-                            Text="Editar línea"
+                            Text="{DynamicResource OrderView_EditarLinea}"
                             Clicked="btnEditarLinea_Clicked"/>
                         
                         <!-- Botón que cancela/borra el ticket de esa mesa -->
                         <Button
                             x:Name="btnCancelarTicket"
                             Grid.Row="3"
-                            Text="Cancelar ticket"
+                            Text="{DynamicResource OrderView_CancelarTicket}"
                             Clicked="btnCancelarTicket_Clicked_1"/>
                         
                         <!-- Botón para salir de un ticket (guardando estado) -->
                         <Button
                             x:Name="btnSalir"
                             Grid.Row="4"
-                            Text="Salir"
+                            Text="{DynamicResource OrderView_Salir}"
                             Clicked="btnSalir_Clicked"/>
                         
                         <!-- Botón para iniciar un cobro -->
@@ -316,7 +314,7 @@
                             Grid.Column="1"
                             Grid.RowSpan="5"
                             WidthRequest="100"
-                            Text="COBRAR"
+                            Text="{DynamicResource OrderView_Cobrar}"
                             Clicked="btnCobrar_Clicked"/>
                     </Grid>
                     <!--#endregion-->
@@ -359,10 +357,7 @@
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Border
-                                            Stroke="Orange"
-                                            StrokeShape="RoundRectangle 5"
-                                            WidthRequest="120"
-                                            HeightRequest="100">
+                                            Style="{DynamicResource CardCategoria}">
                                             <VerticalStackLayout
                                                 Spacing="5"
                                                 HorizontalOptions="Center"
@@ -373,7 +368,7 @@
                                                     HeightRequest="60"/>
                                                 <Label
                                                     Text="{Binding Nombre}"
-                                                    TextColor="Black"
+                                                    Style="{DynamicResource Label}"
                                                     HorizontalOptions="Center"
                                                     VerticalOptions="Center"/>
                                             </VerticalStackLayout>
@@ -407,11 +402,7 @@
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Border
-                                            Stroke="Orange"
-                                            StrokeShape="RoundRectangle 5"
-                                            WidthRequest="120"
-                                            HeightRequest="100"
-                                            BackgroundColor="Grey">
+                                            Style="{DynamicResource CardProducto}">
                                             <VerticalStackLayout
                                                 Spacing="5">
                                                 <Image
@@ -420,7 +411,7 @@
                                                     HeightRequest="60"/>
                                                 <Label
                                                     Text="{Binding Nombre}"
-                                                    TextColor="Black"
+                                                    Style="{DynamicResource Label}"
                                                     HorizontalOptions="Center"
                                                     VerticalOptions="Center"/>
                                             </VerticalStackLayout>
