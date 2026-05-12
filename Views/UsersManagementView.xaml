@@ -1,11 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BarlinkTPV.Views.UsersManagementView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
-</ContentView>
+             x:Class="BarlinkTPV.Views.UsersManagementView"
+             xmlns:local="clr-namespace:BarlinkTPV.Models"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             BackgroundColor="{DynamicResource ColorFondoPrincipal}">
+
+    <Grid
+        ColumnDefinitions="*,*,*"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+
+        <syncfusion:SfDataGrid
+            x:Name="dataGridUsuarios"
+            ColumnWidthMode="Fill"
+            Grid.Row="0"
+            Grid.ColumnSpan="3"
+            BackgroundColor="LightGray"
+            ItemsSource="{Binding Usuarios}"
+            AutoGenerateColumnsMode="None" 
+            ScrollingMode="Line" 
+            NavigationMode="Row" 
+            NewItemPlaceholderPosition="AtEnd"
+            SelectionMode="Single"
+    
+            SelectionChanged="dataGridUsuarios_SelectionChanged">
+
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:DataGridTextColumn 
+                    HeaderText="DNI"
+                    MappingName="Dni"/>
+                
+                <syncfusion:DataGridTextColumn
+                    HeaderText="Nombre"
+                    MappingName="Nombre"/>
+
+                <syncfusion:DataGridTextColumn
+                    HeaderText="Apellidos"
+                    MappingName="Apellidos"/>
+                
+                <syncfusion:DataGridTextColumn
+                    HeaderText="Rol"
+                    MappingName="Rol"/>
+                
+                <syncfusion:DataGridCheckBoxColumn
+                    HeaderText="Activo"
+                    MappingName="Activado"/>
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+
+        <Button
+            x:Name="btnNuevoUsuario"
+            Grid.Column="0"
+            Grid.Row="1"
+            Text="{DynamicResource UserManagementView_Crear}"
+            Margin="10"
+            Clicked="btnNuevoUsuario_Clicked"/>
+
+        <Button
+            x:Name="btnEditarUsuario"
+            Grid.Column="1"
+            Grid.Row="1"
+            Text="{DynamicResource UserManagementView_Editar}"
+            Margin="10"
+            Clicked="btnEditarUsuario_Clicked"/>
+
+        <Button
+            x:Name="btnActualizarTabla"
+            Grid.Column="2"
+            Grid.Row="1"
+            Text="{DynamicResource UserManagementView_Refrescar}"
+            Margin="10"
+            Clicked="btnActualizarTabla_Clicked"/>
+    </Grid>
+</ContentPage>

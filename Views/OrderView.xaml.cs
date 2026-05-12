@@ -50,11 +50,22 @@ public partial class OrderView : ContentPage
         base.OnAppearing();
         await ObtenerLineasTicket();
         lblNumMesa.Text = mesaActual.CodigoMesa;
-        lblEstadoCobro.Text = mesaActual.EstadoMesa.ToString();
-
-
+        if (globalData.IdiomaActual == Idioma.ENG)
+        {
+            lblEstadoCobro.Text = mesaActual.EstadoMesa switch
+            {
+                EstadoMesa.Libre => "Free",
+                EstadoMesa.Ocupada => "Occupied",
+                _ => mesaActual.EstadoMesa.ToString()
+            };
+        }
+        else if (globalData.IdiomaActual == Idioma.ES)
+        {
+            lblEstadoCobro.Text = mesaActual.EstadoMesa.ToString();
+        }
         categorias = await _apiService.ObtenerCategoriasVisibles();
 
+        // Asignamos una imagen a cada categoría
         foreach (var categoria in categorias)
         {
             categoria.NombreImagen = categoria.Nombre switch
@@ -73,7 +84,7 @@ public partial class OrderView : ContentPage
                 _ => "default.png"
             };
 
-            if(globalData.IdiomaActual == Idioma.ENG)
+            if (globalData.IdiomaActual == Idioma.ENG)
             {
                 categoria.Nombre = categoria.Nombre switch
                 {
@@ -92,7 +103,6 @@ public partial class OrderView : ContentPage
                 };
             }
         }
-
         categoriasCollection.ItemsSource = categorias;
     }
 
@@ -108,6 +118,7 @@ public partial class OrderView : ContentPage
 
         productos = await _apiService.ObtenerProductosPorCategoria(categoriaSeleccionada.Id);
 
+        // Asignamos una imagen a cada producto
         foreach (var producto in productos)
         {
             producto.NombreImagen = producto.Nombre switch
@@ -152,7 +163,7 @@ public partial class OrderView : ContentPage
                 _ => "default.png"
             };
 
-            if(globalData.IdiomaActual == Idioma.ENG)
+            if (globalData.IdiomaActual == Idioma.ENG)
             {
                 producto.Nombre = producto.Nombre switch
                 {

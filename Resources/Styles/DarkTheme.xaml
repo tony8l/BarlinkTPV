@@ -6,7 +6,7 @@
     <!-- ========================= -->
     <!-- Colores -->
     <!-- ========================= -->
-
+    <Color x:Key="ColorTextoFlyout">#FFFFFF</Color>
     <Color x:Key="ColorTextoGrande">#F8F6F1</Color>
     <Color x:Key="ColorTextoPequeno">#C9D1C7</Color>
 
@@ -188,26 +188,42 @@
         <Setter Property="WidthRequest" Value="40"/>
     </Style>
 
-    <!-- Button de acción crítica -->
-    <Style x:Key="BotonAccionCritica" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{DynamicResource ColorBotonCriticoFondo}" />
-        <Setter Property="TextColor" Value="{DynamicResource ColorBotonCriticoTexto}" />
-        <Setter Property="FontSize" Value="18" />
-        <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="CornerRadius" Value="12" />
-        <Setter Property="Padding" Value="16,12" />
-        <Setter Property="BorderWidth" Value="0" />
+    <Style TargetType="Picker">
+        <Setter Property="BackgroundColor" Value="{DynamicResource ColorEntryFondo}" />
+        <Setter Property="TextColor" Value="{DynamicResource ColorTextoGrande}" />
+        <Setter Property="TitleColor" Value="{DynamicResource ColorPlaceholder}" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="Inter" />
+        <Setter Property="HeightRequest" Value="50" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
+
                 <VisualStateGroup x:Name="CommonStates">
+
                     <VisualState x:Name="Normal" />
-                    <VisualState x:Name="Disabled">
+
+                    <VisualState x:Name="Focused">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{DynamicResource ColorBotonDeshabilitadoFondo}" />
-                            <Setter Property="TextColor" Value="{DynamicResource ColorBotonDeshabilitadoTexto}" />
+                            <!-- Mismo efecto que Entry -->
+                            <Setter Property="BackgroundColor"
+                            Value="{DynamicResource ColorFondoContenedores}" />
                         </VisualState.Setters>
                     </VisualState>
+
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                            Value="{DynamicResource ColorEntryDeshabilitadoFondo}" />
+                            <Setter Property="TextColor"
+                            Value="{DynamicResource ColorEntryDeshabilitadoTexto}" />
+                            <Setter Property="TitleColor"
+                            Value="{DynamicResource ColorEntryDeshabilitadoPlaceholder}" />
+                            <Setter Property="Opacity" Value="0.85" />
+                        </VisualState.Setters>
+                    </VisualState>
+
                 </VisualStateGroup>
+
             </VisualStateGroupList>
         </Setter>
     </Style>

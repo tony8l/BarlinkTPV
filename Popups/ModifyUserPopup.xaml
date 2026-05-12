@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="BarlinkTPV.Popups.ModifyUserPopup"
+    BackgroundColor="{DynamicResource ColorFondoPrincipal}"
+    CanBeDismissedByTappingOutsideOfPopup="True">
+
+    <Border
+        Padding="20"
+        StrokeThickness="0"
+        StrokeShape="RoundRectangle 20"
+        WidthRequest="500"
+        HeightRequest="400">
+
+        <Grid
+            ColumnDefinitions="*,2*"
+            RowDefinitions="*,*,*,*,*,*,*"
+            RowSpacing="10">
+
+            <Label
+                Grid.Column="0"
+                Grid.Row="0"
+                Style="{DynamicResource Label}"
+                Text="{DynamicResource UserPopup_Dni}"
+                HorizontalOptions="End"
+                VerticalOptions="Center"/>
+
+            <Label
+                Grid.Column="0"
+                Grid.Row="1"
+                Style="{DynamicResource Label}"
+                Text="{DynamicResource UserPopup_Nombre}"
+                HorizontalOptions="End"
+                VerticalOptions="Center"/>
+
+            <Label
+                Grid.Column="0"
+                Grid.Row="2"
+                Style="{DynamicResource Label}"
+                Text="{DynamicResource UserPopup_Apellidos}"
+                HorizontalOptions="End"
+                VerticalOptions="Center"/>
+
+            <Label
+                Grid.Column="0"
+                Grid.Row="3"
+                Style="{DynamicResource Label}"
+                Text="{DynamicResource UserPopup_Rol}"
+                HorizontalOptions="End"
+                VerticalOptions="Center"/>
+
+            <Label
+                Grid.Column="0"
+                Grid.Row="4"
+                Style="{DynamicResource Label}"
+                Text="{DynamicResource UserPopup_Activado}"
+                HorizontalOptions="End"
+                VerticalOptions="Center"/>
+
+            <Border
+                Style="{DynamicResource BorderEntry}"
+                WidthRequest="210"
+                HeightRequest="50"
+                Grid.Column="1"
+                Grid.Row="0"
+                HorizontalOptions="Start"
+                Margin="10,0,0,0">
+
+                <Entry
+                    x:Name="entryDni"
+                    WidthRequest="200"
+                    HeightRequest="40"/>
+            </Border>
+
+            <Border
+                Style="{DynamicResource BorderEntry}"
+                WidthRequest="210"
+                HeightRequest="50"
+                Grid.Column="1"
+                Grid.Row="1"
+                HorizontalOptions="Start"
+                Margin="10,0,0,0">
+
+                <Entry
+                    x:Name="entryNombre"
+                    WidthRequest="200"
+                    HeightRequest="40"/>
+            </Border>
+
+            <Border
+                Style="{DynamicResource BorderEntry}"
+                WidthRequest="210"
+                HeightRequest="50"
+                Grid.Column="1"
+                Grid.Row="2"
+                HorizontalOptions="Start"
+                Margin="10,0,0,0">
+
+                <Entry
+                    x:Name="entryApellidos"
+                    WidthRequest="200"
+                    HeightRequest="40"/>
+            </Border>
+
+            <Picker
+                x:Name="pickerRol"
+                Grid.Column="1"
+                Grid.Row="3"
+                WidthRequest="210"
+                HeightRequest="50"
+                HorizontalOptions="Start"
+                Margin="10,0,0,0"/>
+
+            <CheckBox
+                x:Name="checkActivado"
+                Grid.Column="1"
+                Grid.Row="4"
+                HorizontalOptions="Start"
+                Margin="10,0,0,0"/>
+
+            <Button
+                x:Name="btnConfirmar"
+                Grid.ColumnSpan="2"
+                Grid.Row="5"
+                Text="{DynamicResource UserPopup_Aceptar}"
+                VerticalOptions="End"
+                Clicked="btnConfirmar_Clicked"/>
+
+            <Button
+                x:Name="btnCancelar"
+                Style="{DynamicResource BotonCancelar}"
+                Grid.ColumnSpan="2"
+                Grid.Row="6"
+                Text="{DynamicResource UserPopup_Cancelar}"
+                VerticalOptions="End"
+                Clicked="btnCancelar_Clicked"/>
+        </Grid>
+    </Border>
+</toolkit:Popup>

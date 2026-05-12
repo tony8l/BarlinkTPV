@@ -18,15 +18,13 @@ public partial class WorkerRegPopup : Popup
         if (globalData.UltimoTipoFichaje == TipoFichaje.Entrada)
         {
             btnEntrada.IsEnabled = false;
-            btnSalida.IsEnabled = true;
-            lblEstado.Text = "Puedes fichar SALIDA";
+            btnSalida.IsEnabled = true;;
         }
 
         else if (globalData.UltimoTipoFichaje == TipoFichaje.Salida || globalData.UltimoTipoFichaje == null)
         {
             btnEntrada.IsEnabled = true;
-            btnSalida.IsEnabled = false;
-            lblEstado.Text = "Puedes fichar ENTRADA";
+            btnSalida.IsEnabled = false;;
         }
     }
 

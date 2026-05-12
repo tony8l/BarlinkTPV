@@ -6,7 +6,7 @@
     <!-- ========================= -->
     <!-- Colores -->
     <!-- ========================= -->
-
+    <Color x:Key="ColorTextoFlyout">#FFFFFF</Color>
     <Color x:Key="ColorTextoGrande">#1F2933</Color>
     <Color x:Key="ColorTextoPequeno">#5B6870</Color>
 
@@ -41,7 +41,7 @@
     <Color x:Key="ColorEntryDeshabilitadoPlaceholder">#A8B0B3</Color>
 
     <Color x:Key="ColorTarjetasMesa">#5A928C</Color>
-    <Color x:Key="ColorTarjetasMesaOcuapda">#D96C3F</Color>
+    <Color x:Key="ColorTarjetasMesaOcupada">#D96C3F</Color>
     <Color x:Key="ColorTarjetasProdCat">Orange</Color>
 
     <!-- ========================= -->
@@ -260,5 +260,45 @@
         <Setter Property="BackgroundColor" Value="{DynamicResource ColorFondoContenedores}" />
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="BackgroundColor" Value="{DynamicResource ColorEntryFondo}" />
+        <Setter Property="TextColor" Value="{DynamicResource ColorTextoGrande}" />
+        <Setter Property="TitleColor" Value="{DynamicResource ColorPlaceholder}" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="Inter" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+
+                <VisualStateGroup x:Name="CommonStates">
+
+                    <VisualState x:Name="Normal" />
+
+                    <VisualState x:Name="Focused">
+                        <VisualState.Setters>
+                            <!-- Mismo efecto que Entry -->
+                            <Setter Property="BackgroundColor"
+                                Value="{DynamicResource ColorFondoContenedores}" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                                Value="{DynamicResource ColorEntryDeshabilitadoFondo}" />
+                            <Setter Property="TextColor"
+                                Value="{DynamicResource ColorEntryDeshabilitadoTexto}" />
+                            <Setter Property="TitleColor"
+                                Value="{DynamicResource ColorEntryDeshabilitadoPlaceholder}" />
+                            <Setter Property="Opacity" Value="0.85" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                </VisualStateGroup>
+
+            </VisualStateGroupList>
+        </Setter>
     </Style>
 </ResourceDictionary>

@@ -21,9 +21,9 @@ namespace BarlinkTPV.Singleton
 
         public void CerrarSesion()
         {
-            IdUsuario = null;
-            NombreUsuario = null;
-            DniUsuario = null;
+            IdUsuario = string.Empty;
+            NombreUsuario = string.Empty;
+            DniUsuario = string.Empty;
             RolUsuario = null;
             UltimoTipoFichaje = null;
         }

@@ -83,6 +83,51 @@ namespace BarlinkTPV.Services
 
             return await response.Content.ReadFromJsonAsync<Fichaje>(_jsonOptions);
         }
+
+        // Método para obtener los usuarios
+        public async Task<List<Usuario>> ObtenerUsuarios()
+        {
+            var response = await _httpClient.GetAsync($"usuarios");
+            if (!response.IsSuccessStatusCode)
+                return new List<Usuario>();
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Usuario>>(json, _jsonOptions) ?? new List<Usuario>();
+        }
+
+        // Método para crear un usuario
+        public async Task<Usuario?> CrearUsuario(string dni, string nombre, string apellidos, RolUsuario rolUsuario, bool activado)
+        {
+            var request = new CrearUsuarioDto
+            {
+                Dni = dni,
+                Nombre = nombre,
+                Apellidos = apellidos,
+                Rol = rolUsuario,
+                Activado = activado,
+            };
+
+            var response = await _httpClient.PostAsJsonAsync("usuarios/crear", request);
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            return await response.Content.ReadFromJsonAsync<Usuario>(_jsonOptions);
+        }
+
+        // Método para editar un usuario
+        public async Task<bool> EditarUsuario(string usuarioId, string dni, string nombre, string apellidos, RolUsuario rolUsuario, bool activo)
+        {
+            var request = new ActualizarUsuarioDto
+            {
+                Dni = dni,
+                Nombre = nombre,
+                Apellidos = apellidos,
+                Rol = rolUsuario,
+                Activado = activo
+            };
+            var response = await _httpClient.PatchAsJsonAsync($"usuarios/{usuarioId}", request);
+
+            return response.IsSuccessStatusCode;
+        }
         #endregion
         #region Métodos de gestión de mesas
         // Método para obtener la lista de mesas disponibles
@@ -253,8 +298,7 @@ namespace BarlinkTPV.Services
             return await response.Content.ReadFromJsonAsync<Cobro>(_jsonOptions);
         }
         #endregion
-
-        #region MÉTODOS DE AJUSTES
+        #region Métodos de ajustes
         public async Task<Ajustes?> CrearAjustes(string usuarioId)
         {
             var request = new CrearAjusteDto
@@ -281,7 +325,7 @@ namespace BarlinkTPV.Services
             return JsonSerializer.Deserialize<Ajustes>(json, _jsonOptions);
         }
 
-        public async Task<Ajustes?> EditarAjustes(string ajustesId, Tema tema, Idioma idioma)
+        public async Task<bool> EditarAjustes(string ajustesId, Tema tema, Idioma idioma)
         {
             var request = new ActualizarAjustesDto
             {
@@ -289,9 +333,8 @@ namespace BarlinkTPV.Services
                 Idioma = idioma
             };
             var response = await _httpClient.PatchAsJsonAsync($"ajustes/{ajustesId}", request);
-            if (!response.IsSuccessStatusCode)
-                return null;
-            return await response.Content.ReadFromJsonAsync<Ajustes>(_jsonOptions);
+
+            return response.IsSuccessStatusCode;
         }
         #endregion
     }
