@@ -1,5 +1,6 @@
 ﻿using BarlinkTPV.Models;
 using BarlinkTPV.Models.DTOs;
+using System.Globalization;
 using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -335,6 +336,31 @@ namespace BarlinkTPV.Services
             var response = await _httpClient.PatchAsJsonAsync($"ajustes/{ajustesId}", request);
 
             return response.IsSuccessStatusCode;
+        }
+        #endregion
+        #region Métodos de informes
+        public async Task<List<Cobro>> ObtenerCobrosDia(DateTime diaSeleccionado)
+        {
+            string fecha = diaSeleccionado.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+            var response = await _httpClient.GetAsync($"cobros?fecha={Uri.EscapeDataString(fecha)}");
+
+            if (!response.IsSuccessStatusCode)
+                return new List<Cobro>();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Cobro>>(json, _jsonOptions) ?? new List<Cobro>();
+        }
+
+        public async Task<InformeVentas> ObtenerInformeVentas(DateTime diaSeleccionado)
+        {
+            string fecha = diaSeleccionado.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+            var response = await _httpClient.GetAsync($"cobros/cuadrarCaja?fecha={Uri.EscapeDataString(fecha)}");
+
+            if (!response.IsSuccessStatusCode)
+                return new InformeVentas();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<InformeVentas>(json, _jsonOptions) ?? new InformeVentas();
         }
         #endregion
     }

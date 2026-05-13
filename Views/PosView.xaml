@@ -5,121 +5,125 @@
              BackgroundColor="{DynamicResource ColorFondoPrincipal}">
 
     <Grid
-        RowDefinitions="Auto,*,Auto,*">
+        RowDefinitions="Auto,*,Auto,*"
+        Padding="16">
+        
         <Label 
             Text="{DynamicResource PosView_Sala}"
-            Style="{DynamicResource Label}"
-            Grid.Row="0"/>
+            Style="{DynamicResource LabelTextoMedio}"
+            Grid.Row="0"
+            Padding="10"
+            HorizontalTextAlignment="Center"/>
 
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout Padding="20" Spacing="15">
-                <CollectionView
-                    x:Name="collectionMesasSala"
-                    SelectionMode="Single"
-                    SelectionChanged="collectionMesasSala_SelectionChanged">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2" />
-                    </CollectionView.ItemsLayout>
+        <Border
+            Grid.Row="1"
+            WidthRequest="600">
+            <ScrollView Grid.Row="1">
+                <VerticalStackLayout Padding="20" Spacing="15">
+                    <CollectionView
+                        x:Name="collectionMesasSala"
+                        SelectionMode="Single"
+                        SelectionChanged="collectionMesasSala_SelectionChanged">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="3" />
+                        </CollectionView.ItemsLayout>
 
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Border
-                                x:Name="borderMesasSala"
-                                Style="{DynamicResource CardMesa}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border
+                                    x:Name="borderMesasSala"
+                                    Style="{DynamicResource CardMesa}">
 
-                                <Border.Triggers>
-                                    <DataTrigger 
-                                        TargetType="Border"
-                                        Binding="{Binding EstadoMesa}"
-                                        Value="Libre">
-                                        <Setter 
-                                            Property="BackgroundColor" 
-                                            Value="{DynamicResource ColorTarjetasMesa}"/>
-                                    </DataTrigger>
+                                    <Border.Triggers>
+                                        <DataTrigger 
+                                            TargetType="Border"
+                                            Binding="{Binding EstadoMesa}"
+                                            Value="Libre">
+                                            <Setter 
+                                                Property="BackgroundColor" 
+                                                Value="{DynamicResource ColorTarjetasMesa}"/>
+                                        </DataTrigger>
 
-                                    <DataTrigger 
-                                        TargetType="Border"
-                                        Binding="{Binding EstadoMesa}"
-                                        Value="Ocupada">
-                                        <Setter 
-                                            Property="BackgroundColor" 
-                                            Value="{DynamicResource ColorTarjetasMesaOcupada}" />
-                                    </DataTrigger>
-                                </Border.Triggers>
-                                
-                                <VerticalStackLayout Spacing="8">
-                                    <Label Text="{Binding CodigoMesa}"
-                                           FontSize="20"
-                                           FontAttributes="Bold"
-                                           TextColor="White" />
+                                        <DataTrigger 
+                                            TargetType="Border"
+                                            Binding="{Binding EstadoMesa}"
+                                            Value="Ocupada">
+                                            <Setter 
+                                                Property="BackgroundColor" 
+                                                Value="{DynamicResource ColorTarjetasMesaOcupada}" />
+                                        </DataTrigger>
+                                    </Border.Triggers>
 
-                                    <Label Text="{Binding CategoriaMesa}"
-                                           FontSize="14"
-                                           TextColor="LightGray" />
-
-                                    <Label Text="{Binding EstadoMesa}"
-                                           FontSize="16"
-                                           TextColor="Orange" />
-
-                                    <Label Text="{Binding Bloqueada, StringFormat='{DynamicResource PosView_Bloqueada}'}"
-                                       FontSize="14"
-                                       TextColor="LightGray" />
-                                </VerticalStackLayout>
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </VerticalStackLayout>
-        </ScrollView>
+                                    <HorizontalStackLayout
+                                        Spacing="70">
+                                        <VerticalStackLayout Spacing="8">
+                                            <Label Text="Mesa"
+                                                   TextColor="{DynamicResource ColorLabelPosMesa}"/>
+                                            <Label Text="{Binding CodigoMesa}"
+                                                   TextColor="{DynamicResource ColorLabelPosCodMesa}"
+                                                   FontSize="20"/>
+                                        </VerticalStackLayout>
+                                        <Image Source="mesa.png"
+                                               WidthRequest="50"
+                                               HeightRequest="50"/>
+                                    </HorizontalStackLayout>
+                                    
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+        
 
         <Label 
             Text="{DynamicResource PosView_Terraza}"
-            Style="{DynamicResource Label}"
-            Grid.Row="2"/>
+            Style="{DynamicResource LabelTextoMedio}"
+            Grid.Row="2"
+            Padding="10"
+            HorizontalTextAlignment="Center"/>
 
-        <ScrollView Grid.Row="3">
-            <VerticalStackLayout Padding="20" Spacing="15">
-                <CollectionView
-                    x:Name="collectionMesasTerraza"
-                    SelectionMode="Single"
-                    SelectionChanged="collectionMesasTerraza_SelectionChanged">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2" />
-                    </CollectionView.ItemsLayout>
+        <Border
+            Grid.Row="3"
+            WidthRequest="600">
+            <ScrollView Grid.Row="3">
+                <VerticalStackLayout Padding="20" Spacing="15">
+                    <CollectionView
+                        x:Name="collectionMesasTerraza"
+                        SelectionMode="Single"
+                        SelectionChanged="collectionMesasTerraza_SelectionChanged">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="3" />
+                        </CollectionView.ItemsLayout>
 
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Border 
-                                x:Name="borderMesasTerraza"
-                                Style="{DynamicResource CardMesa}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border 
+                                    x:Name="borderMesasTerraza"
+                                    Style="{DynamicResource CardMesa}">
 
-                                <VerticalStackLayout Spacing="8">
-                                    <Label 
-                                        Text="{Binding CodigoMesa}"
-                                        FontSize="20"
-                                        FontAttributes="Bold"
-                                        TextColor="White" />
+                                    <HorizontalStackLayout
+                                        Spacing="70">
+                                        <VerticalStackLayout Spacing="8">
+                                            <Label  Text="Mesa"
+                                                    TextColor="{DynamicResource ColorLabelPosMesa}"/>
+                                            <Label Text="{Binding CodigoMesa}"
+                                                   TextColor="{DynamicResource ColorLabelPosCodMesa}"
+                                                   FontSize="20"/>
+                                        </VerticalStackLayout>
+                                        <Image Source="mesa.png"
+                                           WidthRequest="50"
+                                           HeightRequest="50"/>
+                                    </HorizontalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
 
-                                    <Label 
-                                        Text="{Binding CategoriaMesa}"
-                                        FontSize="14"
-                                        TextColor="LightGray" />
-
-                                    <Label 
-                                        Text="{Binding EstadoMesa}"
-                                        FontSize="16"
-                                        TextColor="Orange" />
-
-                                    <Label 
-                                        Text="{Binding Bloqueada, StringFormat='{DynamicResource PosView_BloqueadaFormato}'}"
-                                        FontSize="14"
-                                        TextColor="LightGray" />
-                                </VerticalStackLayout>
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </VerticalStackLayout>
-        </ScrollView>
+        </Border>
+        
     </Grid>
 </ContentPage>

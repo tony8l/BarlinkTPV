@@ -70,8 +70,8 @@ public partial class LoginView : ContentPage
                 Application.Current.MainPage = new UserNavigation(globalData);
             }
             else if (usuario.Rol == RolUsuario.Encargado)
-            { 
-                
+            {
+                Application.Current.MainPage = new AdminNavigation(globalData);
             }
         }
         else

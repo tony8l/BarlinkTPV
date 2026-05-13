@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarlinkTPV.Views.HomeAdminView"
+             BackgroundColor="{DynamicResource ColorFondoPrincipal}"
+             >
+
+    <Grid
+        BackgroundColor="{DynamicResource ColorFondoPrincipal}">
+
+        <Border
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            HeightRequest="550"
+            WidthRequest="400">
+
+            <VerticalStackLayout
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Spacing="10">
+
+                <Label
+                    Text="{DynamicResource HomeView_EmpleadoActual}"
+                    Style="{DynamicResource LabelTextoGrande}"
+                    HorizontalOptions="Center"/>
+                <Label
+                    x:Name="lblNombreUsuario"
+                    Style="{DynamicResource LabelTextoGrande}"
+                    HorizontalOptions="Center"
+                    Margin="0,0,0,30"/>
+                <Button
+                    x:Name="btnFichar"
+                    Text="{DynamicResource HomeView_Fichar}"
+                    Clicked="btnFichar_Clicked"/>
+                <Button
+                    x:Name="btnCaja"
+                    Text="{DynamicResource HomeView_Caja}"
+                    Clicked="btnCaja_Clicked"/>
+                <Button
+                    x:Name="btnUsuarios"
+                    Text="GESTIÓN EMPLEADOS"
+                    Clicked="btnUsuarios_Clicked"/>
+                <Button
+                    x:Name="btnInformeVentas"
+                    Text="VENTAS"
+                    Clicked="btnInformeVentas_Clicked"/>
+                <Button
+                    x:Name="btnConfiguracion"
+                    Text="{DynamicResource HomeView_Configuracion}"
+                    Clicked="btnConfiguracion_Clicked"/>
+                <Button
+                    x:Name="btnCerrarSesion"
+                    Text="{DynamicResource HomeView_CerrarSesion}"
+                    Clicked="btnCerrarSesion_Clicked"/>
+
+                <ImageButton
+                    x:Name="btnApagar"
+                    Style="{DynamicResource ImgBotonSalir}"
+                    Source="shutdown_icon.png"
+                    Clicked="btnApagar_Clicked"
+                    Margin="0,50,0,0"/>
+            </VerticalStackLayout>
+        </Border>
+        
+    </Grid>
+    
+</ContentPage>

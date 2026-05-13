@@ -190,11 +190,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="14.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="14.1.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.60" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.7" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="33.2.5" />
-		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="33.2.5" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.8" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="33.2.6" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="33.2.6" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="33.2.6" />
 		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.9" />
 	</ItemGroup>
 
@@ -207,6 +208,9 @@
 	  </Compile>
 	  <Compile Update="Popups\ModifyTicketLinePopup.xaml.cs">
 	    <DependentUpon>ModifyTicketLinePopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\HomeAdminView.xaml.cs">
+	    <DependentUpon>HomeAdminView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -247,6 +251,9 @@
 	  <MauiXaml Update="Resources\Styles\MainTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\HomeAdminView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\HomeView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -257,6 +264,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\PosView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SalesReportsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\SettingsView.xaml">

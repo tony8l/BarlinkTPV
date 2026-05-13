@@ -11,27 +11,39 @@
     <Shell.Resources>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextColor" Value="{DynamicResource ColorTextoFlyout}"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
     </Shell.Resources>
-    
+
     <ShellContent
-        ContentTemplate="{DataTemplate local:HomeView}"
-        Route="HomeView"
-        Title="Inicio"
+        ContentTemplate="{DataTemplate local:HomeAdminView}"
+        Route="HomeAdminView"
+        Title="{DynamicResource Flyout_Inicio}"
         Shell.FlyoutBehavior="Disabled"/>
 
     <ShellContent
         ContentTemplate="{DataTemplate local:PosView}"
         Route="PosView"
-        Title="Caja"/>
+        Title="{DynamicResource Flyout_Caja}"/>
 
     <ShellContent
         ContentTemplate="{DataTemplate local:UsersManagementView}"
         Route="UsersManagementView"
-        Title="Gestionar Empleados"/>
+        Title="{DynamicResource Flyout_GestionEmpleados}"/>
+
+    <ShellContent
+        ContentTemplate="{DataTemplate local:SalesReportsView}"
+        Route="SalesReportsView"
+        Title="{DynamicResource Flyout_InformesVentas}"/>
+
+    <ShellContent
+        ContentTemplate="{DataTemplate local:SettingsView}"
+        Route="SettingsView"
+        Title="{DynamicResource Flyout_Ajustes}"/>
 
     <MenuItem 
         x:Name="btnSalir"
-        Text="Salir"
+        Text="{DynamicResource Flyout_CerrarSesion}"
         Clicked="btnSalir_Clicked"/>
 </Shell>

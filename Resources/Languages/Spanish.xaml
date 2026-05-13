@@ -34,8 +34,8 @@
     <x:String x:Key="OrderView_Salir">Salir</x:String>
     <x:String x:Key="OrderView_Cobrar">COBRAR</x:String>
     <!-- PosView -->
-    <x:String x:Key="PosView_Sala">Sala</x:String>
-    <x:String x:Key="PosView_Terraza">Terraza</x:String>
+    <x:String x:Key="PosView_Sala">SALA</x:String>
+    <x:String x:Key="PosView_Terraza">TERRAZA</x:String>
     <x:String x:Key="PosView_BloqueadaFormato">Bloqueada: {0}</x:String>
 
     <!-- ModifyTicketLine Popup -->
@@ -80,4 +80,16 @@
     <x:String x:Key="Flyout_Ajustes">🔧 CONFIGURACIÓN</x:String>
     <x:String x:Key="Flyout_CerrarSesion">⛔ CERRAR SESIÓN</x:String>
     <x:String x:Key="Flyout_GestionEmpleados">🙍‍♂️ GESTIONAR EMPLEADOS</x:String>
+    <x:String x:Key="Flyout_InformesVentas">📊 INFORMES DE VENTAS</x:String>
+
+    <!-- SalesReportsView -->
+    <x:String x:Key="SalesReportsView_TotalVentas">Total Ventas: {0} €</x:String>
+    <x:String x:Key="SalesReportsView_TotalTarjeta">Total Tarjeta: {0} €</x:String>
+    <x:String x:Key="SalesReportsView_TotalEfectivo">Total Efectivo: {0} €</x:String>
+    <x:String x:Key="SalesReportsView_Efectivo">Efectivo</x:String>
+    <x:String x:Key="SalesReportsView_Tarjeta">Tarjeta</x:String>
+    <x:String x:Key="SalesReportsView_SeleccionaFecha">Selecciona una fecha:</x:String>
+    <x:String x:Key="SalesReportsView_ComparativaVentas">Comparativa de Ventas</x:String>
+    <x:String x:Key="SalesReportsView_TipoCobro">Tipo Cobro</x:String>
+    <x:String x:Key="SalesReportsView_Importe">Importe (€)</x:String>
 </ResourceDictionary>

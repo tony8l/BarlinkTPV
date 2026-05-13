@@ -16,15 +16,14 @@
             ColumnWidthMode="Fill"
             Grid.Row="0"
             Grid.ColumnSpan="3"
-            BackgroundColor="LightGray"
             ItemsSource="{Binding Usuarios}"
             AutoGenerateColumnsMode="None" 
             ScrollingMode="Line" 
             NavigationMode="Row" 
             NewItemPlaceholderPosition="AtEnd"
             SelectionMode="Single"
-    
-            SelectionChanged="dataGridUsuarios_SelectionChanged">
+            SelectionChanged="dataGridUsuarios_SelectionChanged"
+            DefaultStyle="{DynamicResource SyncfusionDataGridStyle}">
 
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:DataGridTextColumn 

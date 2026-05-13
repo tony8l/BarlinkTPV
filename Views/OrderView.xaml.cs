@@ -5,6 +5,7 @@ using BarlinkTPV.Services;
 using BarlinkTPV.Singleton;
 using CommunityToolkit.Maui.Extensions;
 using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace BarlinkTPV.Views;
 
@@ -277,9 +278,93 @@ public partial class OrderView : ContentPage
         await Navigation.PopAsync();
     }
 
-    private void btnCobrar_Clicked(object sender, EventArgs e)
+    private async void btnCobrar_Clicked(object sender, EventArgs e)
     {
+        try
+        {
+            decimal importeTotal = ticketActual.Total;
 
+            string metodoSeleccionado = await DisplayActionSheetAsync(
+                "Selecciona el método de pago",
+                "Cancelar",
+                null,
+                "Efectivo",
+                "Tarjeta"
+            );
+
+            if (string.IsNullOrWhiteSpace(metodoSeleccionado) || metodoSeleccionado == "Cancelar")
+                return;
+
+            MetodoPago metodoPago = metodoSeleccionado switch
+            {
+                "Efectivo" => MetodoPago.Efectivo,
+                "Tarjeta" => MetodoPago.Tarjeta,
+                _ => throw new Exception("Método de pago no válido")
+            };
+
+            decimal entregado = importeTotal;
+
+            if (metodoPago == MetodoPago.Efectivo)
+            {
+                string resul = await DisplayPromptAsync(
+                    "Cobrar Ticket",
+                    "Introduce el importe entregado por el cliente:",
+                    "Aceptar",
+                    "Cancelar",
+                    "Ej: 10,75",
+                    keyboard: Keyboard.Numeric
+                );
+
+                if (string.IsNullOrWhiteSpace(resul))
+                    return;
+
+                string valorNormalizado = resul.Replace('.', ',');
+
+                if (!decimal.TryParse(valorNormalizado, NumberStyles.Any, CultureInfo.CurrentCulture, out entregado))
+                {
+                    await DisplayAlertAsync("Error", "Introduce un importe válido", "Aceptar");
+                    return;
+                }
+
+                if (entregado < importeTotal)
+                {
+                    await DisplayAlertAsync("Error", "El importe entregado no puede ser menor que el total", "Aceptar");
+                    return;
+                }
+            }
+
+            var dto = new CrearCobroDto
+            {
+                TicketId = ticketActual.Id,
+                EmpleadoId = globalData.IdUsuario,
+                MetodoPago = metodoPago,
+                ImporteEntregado = entregado
+            };
+
+            var cobroCreado = await _apiService.CobrarTicket(ticketActual.Id, globalData.IdUsuario, metodoPago, entregado);
+
+            if (cobroCreado == null)
+            {
+                await DisplayAlertAsync("Error", "No se ha podido registrar el cobro", "Aceptar");
+                return;
+            }
+
+            string resumen =
+                $"Método de pago: {cobroCreado.MetodoPago}\n" +
+                $"Importe total: {cobroCreado.ImporteTotal:N2} €\n" +
+                $"Importe entregado: {cobroCreado.ImporteEntregado:N2} €\n" +
+                $"Devolución: {cobroCreado.Devolucion:N2} €\n" +
+                $"Fecha: {cobroCreado.FechaCobro:dd/MM/yyyy HH:mm}";
+
+            await DisplayAlertAsync("Cobro realizado", resumen, "Aceptar");
+
+            await _apiService.CambiarEstadoMesa(mesaActual.Id, EstadoMesa.Libre);
+            await Navigation.PopAsync();
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync("Error", ex.Message, "Aceptar");
+        }
     }
 
     // Método que elimina el ticket de la mesa actual y deja la mesa en un estado "LIBRE"

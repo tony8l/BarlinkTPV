@@ -28,11 +28,6 @@
         Title="{DynamicResource Flyout_Caja}"/>
 
     <ShellContent
-        ContentTemplate="{DataTemplate local:UsersManagementView}"
-        Route="UsersManagementView"
-        Title="{DynamicResource Flyout_GestionEmpleados}"/>
-
-    <ShellContent
         ContentTemplate="{DataTemplate local:SettingsView}"
         Route="SettingsView"
         Title="{DynamicResource Flyout_Ajustes}"/>

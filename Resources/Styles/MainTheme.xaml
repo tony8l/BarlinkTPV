@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BarlinkTPV.Resources.Styles.MainTheme">
+<ResourceDictionary 
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="BarlinkTPV.Resources.Styles.MainTheme"
+            xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid">
 
     <!-- ========================= -->
     <!-- Colores -->
@@ -43,6 +45,21 @@
     <Color x:Key="ColorTarjetasMesa">#5A928C</Color>
     <Color x:Key="ColorTarjetasMesaOcupada">#D96C3F</Color>
     <Color x:Key="ColorTarjetasProdCat">Orange</Color>
+
+    <Color x:Key="ColorGraficoLineas">#D7DCCD</Color>
+    <Color x:Key="ColorGraficoTextos">#1F2933</Color>
+
+    <Color x:Key="ColorDataGridHeaderFondo">#5A928C</Color>
+    <Color x:Key="ColorDataGridHeaderTexto">#FFFDF8</Color>
+    <Color x:Key="ColorDataGridFila">#FFFCF7</Color>
+    <Color x:Key="ColorDataGridFilaAlterna">#F3EFE7</Color>
+    <Color x:Key="ColorDataGridTexto">#1F2933</Color>
+    <Color x:Key="ColorDataGridSeleccion">#D7E7E4</Color>
+    <Color x:Key="ColorDataGridSeleccionTexto">#1F2933</Color>
+    <Color x:Key="ColorDataGridBordes">#D7DCCD</Color>
+
+    <Color x:Key="ColorLabelPosMesa">#1F2933</Color>
+    <Color x:Key="ColorLabelPosCodMesa">#FDFBF8</Color>
 
     <!-- ========================= -->
     <!-- Elementos genéricos -->
@@ -116,6 +133,25 @@
         <Setter Property="StrokeShape" Value="RoundRectangle 20"/>
     </Style>
 
+    <syncfusion:DataGridStyle 
+        x:Key="SyncfusionDataGridStyle"
+        HeaderRowBackground="{DynamicResource ColorDataGridHeaderFondo}"
+        HeaderRowTextColor="{DynamicResource ColorDataGridHeaderTexto}"
+        HeaderGridLineColor="{DynamicResource ColorDataGridBordes}"
+        HeaderGridLineStrokeThickness="1"
+        RowBackground="{DynamicResource ColorDataGridFila}"
+        RowTextColor="{DynamicResource ColorDataGridTexto}"
+        AlternateRowBackground="{DynamicResource ColorDataGridFilaAlterna}"
+        SelectionBackground="{DynamicResource ColorDataGridSeleccion}"
+        SelectedRowTextColor="{DynamicResource ColorDataGridSeleccionTexto}"
+        GridLineColor="{DynamicResource ColorDataGridBordes}"
+        GridLineStrokeThickness="1"
+        HeaderRowFontAttributes="Bold"
+        HeaderRowFontFamily="Montserrat"
+        HeaderRowFontSize="16"
+        RowFontFamily="Inter"
+        RowFontSize="15" />
+    
     <!-- ========================= -->
     <!-- Elementos con x:Key -->
     <!-- ========================= -->
@@ -298,6 +334,40 @@
 
                 </VisualStateGroup>
 
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    
+    <!-- DatePicker -->
+    <Style TargetType="DatePicker">
+        <Setter Property="BackgroundColor" Value="{DynamicResource ColorEntryFondo}" />
+        <Setter Property="TextColor" Value="{DynamicResource ColorTextoGrande}" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="Inter" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="MinimumWidthRequest" Value="170" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+
+                    <VisualState x:Name="Focused">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                                Value="{DynamicResource ColorFondoContenedores}" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                                Value="{DynamicResource ColorEntryDeshabilitadoFondo}" />
+                            <Setter Property="TextColor"
+                                Value="{DynamicResource ColorEntryDeshabilitadoTexto}" />
+                            <Setter Property="Opacity" Value="0.85" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
             </VisualStateGroupList>
         </Setter>
     </Style>

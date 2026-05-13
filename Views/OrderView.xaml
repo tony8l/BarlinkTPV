@@ -75,15 +75,14 @@
                         x:Name="dataGridLineas"
                         ColumnWidthMode="Fill"
                         Grid.Row="1"
-                        BackgroundColor="LightGray"
                         ItemsSource="{Binding Lineas}"
                         AutoGenerateColumnsMode="None" 
                         ScrollingMode="Line" 
                         NavigationMode="Row" 
                         NewItemPlaceholderPosition="AtEnd"
                         SelectionMode="Single"
-                        
-                        SelectionChanged="dataGridLineas_SelectionChanged">
+                        SelectionChanged="dataGridLineas_SelectionChanged"
+                        DefaultStyle="{DynamicResource SyncfusionDataGridStyle}">
 
                         <syncfusion:SfDataGrid.Columns>
                             <syncfusion:DataGridNumericColumn 
@@ -370,7 +369,8 @@
                                                     Text="{Binding Nombre}"
                                                     Style="{DynamicResource Label}"
                                                     HorizontalOptions="Center"
-                                                    VerticalOptions="Center"/>
+                                                    VerticalOptions="Center"
+                                                    FontAttributes="None"/>
                                             </VerticalStackLayout>
                                         </Border>
                                     </DataTemplate>
@@ -413,7 +413,8 @@
                                                     Text="{Binding Nombre}"
                                                     Style="{DynamicResource Label}"
                                                     HorizontalOptions="Center"
-                                                    VerticalOptions="Center"/>
+                                                    VerticalOptions="Center"
+                                                    FontAttributes="None"/>
                                             </VerticalStackLayout>
                                         </Border>
                                     </DataTemplate>
