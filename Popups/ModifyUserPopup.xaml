@@ -12,7 +12,7 @@
         StrokeThickness="0"
         StrokeShape="RoundRectangle 20"
         WidthRequest="500"
-        HeightRequest="400">
+        HeightRequest="450">
 
         <Grid
             ColumnDefinitions="*,2*"
