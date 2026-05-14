@@ -35,8 +35,8 @@ public partial class SalesReportsView : ContentPage
 
         // Mostramos en la barra inferior el informe de ventas general
         lblImporteTotal.Text = string.Format(Traducir("SalesReportsView_TotalVentas"), ventas.TotalCaja);
-        lblImporteTarjeta.Text = string.Format(Traducir("SalesReportsView_TotalTarjeta"), ventas.TotalCaja);
-        lblImporteEfectivo.Text = string.Format(Traducir("SalesReportsView_TotalEfectivo"), ventas.TotalCaja);
+        lblImporteTarjeta.Text = string.Format(Traducir("SalesReportsView_TotalTarjeta"), ventas.TotalTarjeta);
+        lblImporteEfectivo.Text = string.Format(Traducir("SalesReportsView_TotalEfectivo"), ventas.TotalEfectivo);
     }
 
     // Método que carga los datos en el gráfico
@@ -95,8 +95,8 @@ public partial class SalesReportsView : ContentPage
 
         // Mostramos en la barra inferior el informe de ventas general
         lblImporteTotal.Text = string.Format(Traducir("SalesReportsView_TotalVentas"), ventas.TotalCaja);
-        lblImporteTarjeta.Text = string.Format(Traducir("SalesReportsView_TotalTarjeta"), ventas.TotalCaja);
-        lblImporteEfectivo.Text = string.Format(Traducir("SalesReportsView_TotalEfectivo"), ventas.TotalCaja);
+        lblImporteTarjeta.Text = string.Format(Traducir("SalesReportsView_TotalTarjeta"), ventas.TotalTarjeta);
+        lblImporteEfectivo.Text = string.Format(Traducir("SalesReportsView_TotalEfectivo"), ventas.TotalEfectivo);
     }
 
     private string Traducir(string clave)

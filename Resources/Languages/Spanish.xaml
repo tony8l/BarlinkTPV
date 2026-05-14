@@ -7,6 +7,8 @@
     <x:String x:Key="HomeView_EmpleadoActual">Empleado Actual:</x:String>
     <x:String x:Key="HomeView_Fichar">⌚ FICHAR</x:String>
     <x:String x:Key="HomeView_Caja">💰 CAJA</x:String>
+    <x:String x:Key="HomeView_GestEmple">🙍‍♂️ GESTIÓN EMPLEADOS</x:String>
+    <x:String x:Key="HomeView_InformeVentas">📊 VENTAS</x:String>
     <x:String x:Key="HomeView_Configuracion">🔧 CONFIGURACIÓN</x:String>
     <x:String x:Key="HomeView_CerrarSesion">⛔ CERRAR SESIÓN</x:String>
     <!-- LoginView -->
@@ -36,7 +38,7 @@
     <!-- PosView -->
     <x:String x:Key="PosView_Sala">SALA</x:String>
     <x:String x:Key="PosView_Terraza">TERRAZA</x:String>
-    <x:String x:Key="PosView_BloqueadaFormato">Bloqueada: {0}</x:String>
+    <x:String x:Key="PosView_Mesa">Mesa</x:String>
 
     <!-- ModifyTicketLine Popup -->
     <x:String x:Key="ModifyLinePopup_Cantidad">Cantidad</x:String>
@@ -79,8 +81,8 @@
     <x:String x:Key="Flyout_Caja">💰 CAJA</x:String>
     <x:String x:Key="Flyout_Ajustes">🔧 CONFIGURACIÓN</x:String>
     <x:String x:Key="Flyout_CerrarSesion">⛔ CERRAR SESIÓN</x:String>
-    <x:String x:Key="Flyout_GestionEmpleados">🙍‍♂️ GESTIONAR EMPLEADOS</x:String>
-    <x:String x:Key="Flyout_InformesVentas">📊 INFORMES DE VENTAS</x:String>
+    <x:String x:Key="Flyout_GestionEmpleados">🙍‍♂️ GESTIÓN EMPLEADOS</x:String>
+    <x:String x:Key="Flyout_InformesVentas">📊 VENTAS</x:String>
 
     <!-- SalesReportsView -->
     <x:String x:Key="SalesReportsView_TotalVentas">Total Ventas: {0} €</x:String>

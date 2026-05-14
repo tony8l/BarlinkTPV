@@ -7,6 +7,8 @@
     <x:String x:Key="HomeView_EmpleadoActual">Current Employee:</x:String>
     <x:String x:Key="HomeView_Fichar">⌚ CLOCK IN/OUT</x:String>
     <x:String x:Key="HomeView_Caja">💰 POS REGISTER</x:String>
+    <x:String x:Key="HomeView_GestEmple">🙍‍♂️ MANAGE EMPLOYEES</x:String>
+    <x:String x:Key="HomeView_InformeVentas">📊 SALES REPORTS</x:String>
     <x:String x:Key="HomeView_Configuracion">🔧 SETTINGS</x:String>
     <x:String x:Key="HomeView_CerrarSesion">⛔ LOG OUT</x:String>
 
@@ -38,7 +40,7 @@
     <!-- PosView -->
     <x:String x:Key="PosView_Sala">INDOOR</x:String>
     <x:String x:Key="PosView_Terraza">TERRACE</x:String>
-    <x:String x:Key="PosView_BloqueadaFormato">Blocked: {0}</x:String>
+    <x:String x:Key="PosView_Mesa">Table</x:String>
 
     <!-- ModifyTicketLine Popup -->
     <x:String x:Key="ModifyLinePopup_Cantidad">Quantity</x:String>

@@ -26,7 +26,7 @@
                 Grid.Row="0"
                 Style="{DynamicResource Label}"
                 Text="{DynamicResource ModifyLinePopup_Cantidad}"
-                WidthRequest="61"
+                WidthRequest="65"
                 HorizontalOptions="Center"/>
 
             <Entry

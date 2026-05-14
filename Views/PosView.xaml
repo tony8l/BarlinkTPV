@@ -57,7 +57,7 @@
                                     <HorizontalStackLayout
                                         Spacing="70">
                                         <VerticalStackLayout Spacing="8">
-                                            <Label Text="Mesa"
+                                            <Label Text="{DynamicResource PosView_Mesa}"
                                                    TextColor="{DynamicResource ColorLabelPosMesa}"/>
                                             <Label Text="{Binding CodigoMesa}"
                                                    TextColor="{DynamicResource ColorLabelPosCodMesa}"
@@ -102,6 +102,26 @@
                                 <Border 
                                     x:Name="borderMesasTerraza"
                                     Style="{DynamicResource CardMesa}">
+
+                                    <Border.Triggers>
+                                        <DataTrigger 
+                                            TargetType="Border"
+                                            Binding="{Binding EstadoMesa}"
+                                            Value="Libre">
+                                            <Setter 
+                                                Property="BackgroundColor" 
+                                                Value="{DynamicResource ColorTarjetasMesa}"/>
+                                        </DataTrigger>
+
+                                        <DataTrigger 
+                                            TargetType="Border"
+                                            Binding="{Binding EstadoMesa}"
+                                            Value="Ocupada">
+                                            <Setter 
+                                                Property="BackgroundColor" 
+                                                Value="{DynamicResource ColorTarjetasMesaOcupada}" />
+                                        </DataTrigger>
+                                    </Border.Triggers>
 
                                     <HorizontalStackLayout
                                         Spacing="70">

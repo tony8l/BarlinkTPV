@@ -38,11 +38,11 @@
                     Clicked="btnCaja_Clicked"/>
                 <Button
                     x:Name="btnUsuarios"
-                    Text="GESTIÓN EMPLEADOS"
+                    Text="{DynamicResource HomeView_GestEmple}"
                     Clicked="btnUsuarios_Clicked"/>
                 <Button
                     x:Name="btnInformeVentas"
-                    Text="VENTAS"
+                    Text="{DynamicResource HomeView_InformeVentas}"
                     Clicked="btnInformeVentas_Clicked"/>
                 <Button
                     x:Name="btnConfiguracion"
