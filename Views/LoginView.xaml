@@ -15,17 +15,16 @@
             Background="{DynamicResource ColorFondoContenedores}">
 
             <Grid
-                RowDefinitions="*,*,*"
+                RowDefinitions="Auto,*,*"
                 RowSpacing="0"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
 
-                <Label
-                    Grid.Row="0"               
-                    Style="{DynamicResource LabelTextoGrande}"
-                    Text="{DynamicResource LoginView_Titulo}"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"/>
+                <Image Source="logo.png"
+                       Grid.Row="0"
+                       HorizontalOptions="Center"
+                       WidthRequest="150"
+                       Margin="0,80,0,0"/>
 
                 <VerticalStackLayout
                     Grid.Row="1"
@@ -35,7 +34,8 @@
                     <Border
                         Style="{DynamicResource BorderEntry}"
                         WidthRequest="210"
-                        HeightRequest="50">
+                        HeightRequest="50"
+                        Margin="0,50,0,0">
                         <Entry
                             x:Name="entryDni"
                             WidthRequest="200"
@@ -46,7 +46,8 @@
                     <HorizontalStackLayout
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
-                        Spacing="5">
+                        Spacing="5"
+                        Margin="0,40,0,0">
                         <Button
                             x:Name="btnIniciarSesion"
                             Text="{DynamicResource LoginView_IniciarSesion}"

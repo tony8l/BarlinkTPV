@@ -18,7 +18,8 @@ namespace BarlinkTPV.Services
         {
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:7002/api/")
+                //BaseAddress = new Uri("https://localhost:7002/api/")
+                BaseAddress = new Uri("https://barlinkapi.onrender.com/api/")
             };
 
             // Configuras las opciones una sola vez en el constructor
