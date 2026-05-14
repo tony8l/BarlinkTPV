@@ -82,7 +82,7 @@ public partial class OrderView : ContentPage
                 "Carnes" => "carnes.png",
                 "Ensaladas" => "ensaladas.png",
                 "Cervezas" => "cervezas.png",
-                _ => "default.png"
+                _ => "predeterminado.png"
             };
 
             if (globalData.IdiomaActual == Idioma.ENG)
@@ -161,7 +161,7 @@ public partial class OrderView : ContentPage
                 "Copa Vino Tinto" => "copatinto.webp",
                 "Botella Vino Blanco" => "botvinoblanco.png",
                 "Botella Vino Tinto" => "botvinotinto.png",
-                _ => "default.png"
+                _ => "predeterminado.png"
             };
 
             if (globalData.IdiomaActual == Idioma.ENG)
@@ -284,6 +284,8 @@ public partial class OrderView : ContentPage
         {
             decimal importeTotal = ticketActual.Total;
 
+            // Similar a Popup pero en forma de alerta
+            // Se registra los botones pulsados
             string metodoSeleccionado = await DisplayActionSheetAsync(
                 "Selecciona el método de pago",
                 "Cancelar",
@@ -295,6 +297,7 @@ public partial class OrderView : ContentPage
             if (string.IsNullOrWhiteSpace(metodoSeleccionado) || metodoSeleccionado == "Cancelar")
                 return;
 
+            // Se actualiza el método de pago según el switch y el botón pulsado con anterioridad
             MetodoPago metodoPago = metodoSeleccionado switch
             {
                 "Efectivo" => MetodoPago.Efectivo,
@@ -304,6 +307,7 @@ public partial class OrderView : ContentPage
 
             decimal entregado = importeTotal;
 
+            // Si el pago escogido es efectivo, se pide al usuario introducir la cantidad
             if (metodoPago == MetodoPago.Efectivo)
             {
                 string resul = await DisplayPromptAsync(
@@ -320,6 +324,7 @@ public partial class OrderView : ContentPage
 
                 string valorNormalizado = resul.Replace('.', ',');
 
+                // Convertimos el número obtenido a un número computable
                 if (!decimal.TryParse(valorNormalizado, NumberStyles.Any, CultureInfo.CurrentCulture, out entregado))
                 {
                     await DisplayAlertAsync("Error", "Introduce un importe válido", "Aceptar");
@@ -333,6 +338,7 @@ public partial class OrderView : ContentPage
                 }
             }
 
+            // Creamos un nuevo cobro pasando los datos introducidos anteriormente
             var dto = new CrearCobroDto
             {
                 TicketId = ticketActual.Id,
@@ -349,6 +355,7 @@ public partial class OrderView : ContentPage
                 return;
             }
 
+            // Resumen
             string resumen =
                 $"Método de pago: {cobroCreado.MetodoPago}\n" +
                 $"Importe total: {cobroCreado.ImporteTotal:N2} €\n" +
@@ -356,8 +363,10 @@ public partial class OrderView : ContentPage
                 $"Devolución: {cobroCreado.Devolucion:N2} €\n" +
                 $"Fecha: {cobroCreado.FechaCobro:dd/MM/yyyy HH:mm}";
 
+            // Mostramos una alerta con el string de resumen
             await DisplayAlertAsync("Cobro realizado", resumen, "Aceptar");
 
+            // Volvemos a poner la mesa en estado libre
             await _apiService.CambiarEstadoMesa(mesaActual.Id, EstadoMesa.Libre);
             await Navigation.PopAsync();
         }
@@ -413,6 +422,7 @@ public partial class OrderView : ContentPage
         }
     }
 
+    // Método para editar la linea de un ticket
     private async void btnEditarLinea_Clicked(object sender, EventArgs e)
     {
         if (lineaSeleccionada == null)
@@ -429,6 +439,7 @@ public partial class OrderView : ContentPage
         
     }
 
+    // Método que añade números al string
     private async void NumpadButton_Clicked(object sender, EventArgs e)
     {
         if (sender is not Button boton)
@@ -464,6 +475,7 @@ public partial class OrderView : ContentPage
         lblCantidadValue.Text = cantidadNumpad;
     }
 
+    // Método que borra la cantidad introducida mediante  el numpad
     private void numPadBorrar_Clicked(object sender, EventArgs e)
     {
         if (string.IsNullOrEmpty(cantidadNumpad))
@@ -511,6 +523,7 @@ public partial class OrderView : ContentPage
         ActualizarInfoTicket();
     }
 
+    // Método que actualiza el informe debajo de las líneas de ticket
     private void ActualizarInfoTicket()
     {
         lblTotalIvaValue.Text = $"{ticketActual.TotalIva:N2} €";

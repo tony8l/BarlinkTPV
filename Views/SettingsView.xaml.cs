@@ -7,6 +7,9 @@ using BarlinkTPV.Models;
 
 namespace BarlinkTPV.Views;
 
+// Clase que gestiona el cambio de temas
+// Se cambia el tema en tiempo real 
+// Se actualiza los ajustes del usuario loggeado en la BBDD
 public partial class SettingsView : ContentPage
 {
     private ApiService _apiService;

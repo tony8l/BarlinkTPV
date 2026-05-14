@@ -140,7 +140,6 @@
                                 Style="{DynamicResource Label}"
                                 Margin="0,0,20,0"/>
                         </Grid>
-
                     </Border>
                 </Grid>
                 <!--#endregion-->
@@ -257,6 +256,7 @@
 
                         <Button
                             x:Name="btnAbrirCajon"
+                            Style="{DynamicResource BotonAlternativo}"
                             Text="{DynamicResource OrderView_AbrirCajon}"
                             Grid.Row="4"
                             Grid.ColumnSpan="3"
@@ -275,6 +275,7 @@
                         <!-- Botón que elimina una sola linea -->
                         <Button
                             x:Name="btnEliminarProducto"
+                            Style="{DynamicResource BotonAlternativo}"
                             Grid.Row="0"
                             Text="{DynamicResource OrderView_BorrarFila}"
                             Clicked="btnEliminarProducto_Clicked"/>
@@ -282,6 +283,7 @@
                         <!-- Botón que elimina todas las lineas -->
                         <Button
                             x:Name="btnEliminarTodo"
+                            Style="{DynamicResource BotonAlternativo}"
                             Grid.Row="1"
                             Text="{DynamicResource OrderView_BorrarTodo}"
                             Clicked="btnEliminarTodo_Clicked"/>
@@ -289,6 +291,7 @@
                         <!-- Botón para editar la cantidad de una linea -->
                         <Button
                             x:Name="btnEditarLinea"
+                            Style="{DynamicResource BotonAlternativo}"
                             Grid.Row="2"
                             Text="{DynamicResource OrderView_EditarLinea}"
                             Clicked="btnEditarLinea_Clicked"/>
@@ -296,6 +299,7 @@
                         <!-- Botón que cancela/borra el ticket de esa mesa -->
                         <Button
                             x:Name="btnCancelarTicket"
+                            Style="{DynamicResource BotonAlternativo}"
                             Grid.Row="3"
                             Text="{DynamicResource OrderView_CancelarTicket}"
                             Clicked="btnCancelarTicket_Clicked_1"/>
@@ -303,6 +307,7 @@
                         <!-- Botón para salir de un ticket (guardando estado) -->
                         <Button
                             x:Name="btnSalir"
+                            Style="{DynamicResource BotonAlternativo}"
                             Grid.Row="4"
                             Text="{DynamicResource OrderView_Salir}"
                             Clicked="btnSalir_Clicked"/>
@@ -310,6 +315,8 @@
                         <!-- Botón para iniciar un cobro -->
                         <Button
                             x:Name="btnCobrar"
+                            Style="{DynamicResource BotonAlternativo}"
+                            BackgroundColor="{DynamicResource ColorBotonCobrar}"
                             Grid.Column="1"
                             Grid.RowSpan="5"
                             WidthRequest="100"

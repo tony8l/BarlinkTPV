@@ -60,7 +60,7 @@
                         <syncfusion:DataGridTextColumn 
                             HeaderText="Ticket"
                             MappingName="CodigoTicket"
-                            Width="82"
+                            Width="85"
                             CellTextAlignment="Start"
                             HeaderTextAlignment="Start"/>
                         

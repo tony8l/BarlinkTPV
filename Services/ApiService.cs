@@ -300,6 +300,7 @@ namespace BarlinkTPV.Services
         }
         #endregion
         #region Métodos de ajustes
+        // Método para crear una nueva configuración a un usuario (se aplicará una configuración predeterminada)
         public async Task<Ajustes?> CrearAjustes(string usuarioId)
         {
             var request = new CrearAjusteDto
@@ -317,6 +318,7 @@ namespace BarlinkTPV.Services
             return await response.Content.ReadFromJsonAsync<Ajustes>(_jsonOptions);
         }
 
+        // Método para obtener los ajustes del usuario loggeado
         public async Task<Ajustes?> ObtenerAjustesUsuario(string usuarioId)
         {
             var response = await _httpClient.GetAsync($"ajustes/{usuarioId}");
@@ -326,6 +328,7 @@ namespace BarlinkTPV.Services
             return JsonSerializer.Deserialize<Ajustes>(json, _jsonOptions);
         }
 
+        // Método para actualizar los ajustes del usuario
         public async Task<bool> EditarAjustes(string ajustesId, Tema tema, Idioma idioma)
         {
             var request = new ActualizarAjustesDto
@@ -339,6 +342,7 @@ namespace BarlinkTPV.Services
         }
         #endregion
         #region Métodos de informes
+        // Método para obtener todos los cobros del día pasado por parámetro
         public async Task<List<Cobro>> ObtenerCobrosDia(DateTime diaSeleccionado)
         {
             string fecha = diaSeleccionado.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
@@ -351,6 +355,7 @@ namespace BarlinkTPV.Services
             return JsonSerializer.Deserialize<List<Cobro>>(json, _jsonOptions) ?? new List<Cobro>();
         }
 
+        // Método para obtener un informe de ventas totales, cobros con tarjeta y efectivo
         public async Task<InformeVentas> ObtenerInformeVentas(DateTime diaSeleccionado)
         {
             string fecha = diaSeleccionado.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);

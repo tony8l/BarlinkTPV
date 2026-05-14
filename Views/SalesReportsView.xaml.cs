@@ -86,6 +86,7 @@ public partial class SalesReportsView : ContentPage
         }
     }
 
+    // Evento que gestiona la fecha seleccionada
     private async void datePickerInforme_DateSelected(object sender, DateChangedEventArgs e)
     {
         fechaSeleccionada = (DateTime) ((DatePicker)sender).Date;
@@ -99,6 +100,7 @@ public partial class SalesReportsView : ContentPage
         lblImporteEfectivo.Text = string.Format(Traducir("SalesReportsView_TotalEfectivo"), ventas.TotalEfectivo);
     }
 
+    // Método para traducir los label según el diccionario
     private string Traducir(string clave)
     {
         if (Application.Current?.Resources.TryGetValue(clave, out var valor) == true)

@@ -4,6 +4,7 @@ using BarlinkTPV.Singleton;
 using CommunityToolkit.Maui.Extensions;
 namespace BarlinkTPV.Views;
 
+// Vista de menú para un usuario "Camarero" (Usuario)
 public partial class HomeView : ContentPage
 {
     private readonly GlobalData globalData;
@@ -18,7 +19,10 @@ public partial class HomeView : ContentPage
         base.OnAppearing();
         lblNombreUsuario.Text = globalData.NombreUsuario;
     }
-    
+
+    // Botones del menú
+    // Con cada uno se accede a una vista diferente
+    // Parecido a un Flyout, pero en forma de menú
     private void btnCerrarSesion_Clicked(object sender, EventArgs e)
     {
 		Application.Current.MainPage = new InitialNavigation();

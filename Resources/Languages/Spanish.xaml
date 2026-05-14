@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BarlinkTPV.Resources.Languages.Spanish">
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BarlinkTPV.Resources.Languages.Spanish">
 
     <!-- HomeView -->
     <x:String x:Key="HomeView_EmpleadoActual">Empleado Actual:</x:String>
@@ -11,6 +12,7 @@
     <x:String x:Key="HomeView_InformeVentas">📊 VENTAS</x:String>
     <x:String x:Key="HomeView_Configuracion">🔧 CONFIGURACIÓN</x:String>
     <x:String x:Key="HomeView_CerrarSesion">⛔ CERRAR SESIÓN</x:String>
+    
     <!-- LoginView -->
     <x:String x:Key="LoginView_Titulo">BARLINK TPV</x:String>
     <x:String x:Key="LoginView_PlaceholderDni">Introduce tu DNI</x:String>
@@ -24,10 +26,8 @@
     <x:String x:Key="OrderView_Col_Nombre">Nombre</x:String>
     <x:String x:Key="OrderView_Col_PrecioUd">Precio Ud.</x:String>
     <x:String x:Key="OrderView_Col_Subtotal">Subtotal</x:String>
-
     <x:String x:Key="OrderView_TotalIva">Total IVA:</x:String>
     <x:String x:Key="OrderView_ImporteTotal">Importe Total:</x:String>
-
     <x:String x:Key="OrderView_AbrirCajon">ABRIR CAJÓN</x:String>
     <x:String x:Key="OrderView_BorrarFila">Borrar fila</x:String>
     <x:String x:Key="OrderView_BorrarTodo">Borrar todo</x:String>
@@ -35,38 +35,17 @@
     <x:String x:Key="OrderView_CancelarTicket">Cancelar ticket</x:String>
     <x:String x:Key="OrderView_Salir">Salir</x:String>
     <x:String x:Key="OrderView_Cobrar">COBRAR</x:String>
+    
     <!-- PosView -->
     <x:String x:Key="PosView_Sala">SALA</x:String>
     <x:String x:Key="PosView_Terraza">TERRAZA</x:String>
     <x:String x:Key="PosView_Mesa">Mesa</x:String>
 
-    <!-- ModifyTicketLine Popup -->
-    <x:String x:Key="ModifyLinePopup_Cantidad">Cantidad</x:String>
-    <x:String x:Key="ModifyLinePopup_Nombre">Nombre</x:String>
-    <x:String x:Key="ModifyLinePopup_Confirmar">Confirmar</x:String>
-    <x:String x:Key="ModifyLinePopup_Cancelar">Cancelar</x:String>
-
-    <!-- WorkerRegPopup -->
-    <x:String x:Key="WorkerRegPopup_Titulo">Fichaje</x:String>
-    <x:String x:Key="WorkerRegPopup_SeleccionaOpcion">Selecciona la opción disponible</x:String>
-    <x:String x:Key="WorkerRegPopup_Entrada">Fichar entrada</x:String>
-    <x:String x:Key="WorkerRegPopup_Salida">Fichar salida</x:String>
-    <x:String x:Key="WorkerRegPopup_Cancelar">Cancelar</x:String>
-    
-    <!-- Update/CreateUserPopup-->
-    <x:String x:Key="UserPopup_Dni">DNI: </x:String>
-    <x:String x:Key="UserPopup_Nombre">Nombre: </x:String>
-    <x:String x:Key="UserPopup_Apellidos">Apellidos: </x:String>
-    <x:String x:Key="UserPopup_Rol">Rol: </x:String>
-    <x:String x:Key="UserPopup_Activado">Activado: </x:String>
-    <x:String x:Key="UserPopup_Aceptar">Aceptar</x:String>
-    <x:String x:Key="UserPopup_Cancelar">Cancelar</x:String>
-    
     <!-- UserManagementView -->
     <x:String x:Key="UserManagementView_Crear">Crear Usuario</x:String>
     <x:String x:Key="UserManagementView_Editar">Editar Usuario</x:String>
     <x:String x:Key="UserManagementView_Refrescar">Refrescar</x:String>
-    
+
     <!-- SettingsView -->
     <x:String x:Key="SettingsView_SeleccionTema">Selecciona un tema</x:String>
     <x:String x:Key="SettingsView_TemaPred">Tema Predeterminado</x:String>
@@ -75,7 +54,7 @@
     <x:String x:Key="SettingsView_SeleccionIdioma">Selecciona un idioma</x:String>
     <x:String x:Key="SettingsView_IdiomaEsp">Español</x:String>
     <x:String x:Key="SettingsView_IdiomaEng">Inglés</x:String>
-    
+
     <!-- Flyout -->
     <x:String x:Key="Flyout_Inicio">🏠 INICIO</x:String>
     <x:String x:Key="Flyout_Caja">💰 CAJA</x:String>
@@ -94,4 +73,26 @@
     <x:String x:Key="SalesReportsView_ComparativaVentas">Comparativa de Ventas</x:String>
     <x:String x:Key="SalesReportsView_TipoCobro">Tipo Cobro</x:String>
     <x:String x:Key="SalesReportsView_Importe">Importe (€)</x:String>
+
+    <!-- ModifyTicketLine Popup -->
+    <x:String x:Key="ModifyLinePopup_Cantidad">Cantidad</x:String>
+    <x:String x:Key="ModifyLinePopup_Nombre">Nombre</x:String>
+    <x:String x:Key="ModifyLinePopup_Confirmar">Confirmar</x:String>
+    <x:String x:Key="ModifyLinePopup_Cancelar">Cancelar</x:String>
+
+    <!-- WorkerReg Popup -->
+    <x:String x:Key="WorkerRegPopup_Titulo">Fichaje</x:String>
+    <x:String x:Key="WorkerRegPopup_SeleccionaOpcion">Selecciona la opción disponible</x:String>
+    <x:String x:Key="WorkerRegPopup_Entrada">Fichar entrada</x:String>
+    <x:String x:Key="WorkerRegPopup_Salida">Fichar salida</x:String>
+    <x:String x:Key="WorkerRegPopup_Cancelar">Cancelar</x:String>
+    
+    <!-- Update/CreateUser Popup-->
+    <x:String x:Key="UserPopup_Dni">DNI: </x:String>
+    <x:String x:Key="UserPopup_Nombre">Nombre: </x:String>
+    <x:String x:Key="UserPopup_Apellidos">Apellidos: </x:String>
+    <x:String x:Key="UserPopup_Rol">Rol: </x:String>
+    <x:String x:Key="UserPopup_Activado">Activado: </x:String>
+    <x:String x:Key="UserPopup_Aceptar">Aceptar</x:String>
+    <x:String x:Key="UserPopup_Cancelar">Cancelar</x:String>
 </ResourceDictionary>

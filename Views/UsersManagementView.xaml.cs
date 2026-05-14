@@ -26,6 +26,7 @@ public partial class UsersManagementView : ContentPage
 		await ObtenerUsuarios();
 	}
 
+	// Evento que captura el usuario seleccionado de la tabla
     private void dataGridUsuarios_SelectionChanged(object sender, Syncfusion.Maui.DataGrid.DataGridSelectionChangedEventArgs e)
     {
 		usuarioSeleccionado = e.AddedRows?.FirstOrDefault() as Usuario;
@@ -36,6 +37,7 @@ public partial class UsersManagementView : ContentPage
 		}
     }
 
+	// Método para obtener todos los usuarios
 	public async Task ObtenerUsuarios()
 	{
 		var usuarios = await _apiService.ObtenerUsuarios();
@@ -46,6 +48,7 @@ public partial class UsersManagementView : ContentPage
 		}
 	}
 
+	// Eventos de los botones para crear, editar usuarios o refrescar la tabla
     private async void btnNuevoUsuario_Clicked(object sender, EventArgs e)
     {
 		var popup = new CreateUserPopup();

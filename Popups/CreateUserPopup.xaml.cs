@@ -17,14 +17,15 @@ public partial class CreateUserPopup : Popup
         checkActivado.IsChecked = true;
     }
 
+    // Insertamos un nuevo usuario con los valores pasados por parámetro
     private async void btnConfirmar_Clicked(object sender, EventArgs e)
     {
-        Debug.WriteLine("Estado: " + checkActivado.IsChecked);
 		var usuario = await _apiService.CrearUsuario(entryDni.Text, entryNombre.Text, entryApellidos.Text, (RolUsuario)pickerRol.SelectedItem, checkActivado.IsChecked);
         await _apiService.CrearAjustes(usuario.Id);
         await CloseAsync();
     }
 
+    // Volver atrás
     private async void btnCancelar_Clicked(object sender, EventArgs e)
     {
         await CloseAsync();

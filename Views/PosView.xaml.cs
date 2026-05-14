@@ -21,6 +21,7 @@ public partial class PosView : ContentPage
     {
         base.OnAppearing();
 
+        // Cargamos las mesas de sala y las mesas de la terraza que se encuentran Bloqueada=false (mesas visibles)
         mesas = await _apiService.ObtenerMesas();
         List<Mesa> mesasSala = mesas
             .Where(m => m.CategoriaMesa == "Sala")
@@ -61,8 +62,11 @@ public partial class PosView : ContentPage
         await MesaSeleccionadaEvents(mesaSeleccionada);
     }
 
+    // Método que gestiona la selección de mesas
     public async Task MesaSeleccionadaEvents(Mesa mesaSeleccionada)
     {
+        // Si la mesa que se ha seleccionado está libre, se abrirá un nuevo ticket
+        // Se cambiará el estado de la mesa a ocupada
         if (mesaSeleccionada.EstadoMesa == EstadoMesa.Libre)
         {
             Ticket? ticket = await _apiService.AbrirTicket(mesaSeleccionada.Id);
@@ -83,6 +87,7 @@ public partial class PosView : ContentPage
             await Navigation.PushAsync(new OrderView(mesaSeleccionada, ticket, globalData));
         }
 
+        // Si la mesa ya estaba ocupada con anterioridad, se busca el ticket de esa mesa
         else
         {
             Ticket ticket = await _apiService.ObtenerTicketMesaActual(mesaSeleccionada.Id);

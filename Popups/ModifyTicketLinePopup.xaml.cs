@@ -20,11 +20,7 @@ public partial class ModifyTicketLinePopup : Popup
 		entryNombreProducto.Text = lineaTicket.NombreProducto;
     }
 
-    private async void btnCancelar_Clicked(object sender, EventArgs e)
-    {
-		await CloseAsync();
-    }
-
+	// Actualizamos la cantidad del producto seleccionado
     private async void btnConfirmar_Clicked(object sender, EventArgs e)
     {
 		if (lineaTicket != null)
@@ -33,5 +29,11 @@ public partial class ModifyTicketLinePopup : Popup
             await CloseAsync();
         }
 		
+    }
+
+	// Volver atrás
+    private async void btnCancelar_Clicked(object sender, EventArgs e)
+    {
+        await CloseAsync();
     }
 }

@@ -14,6 +14,7 @@ public partial class ModifyUserPopup : Popup
 		InitializeComponent();
 		usuarioSeleccionado = usuario;
 		_apiService = new ApiService();
+		// Mostramos los valores pasados por parámetro del usuario de la vista anterior
 		entryDni.Text = usuarioSeleccionado.Dni;
 		entryNombre.Text = usuarioSeleccionado.Nombre;
 		entryApellidos.Text = usuarioSeleccionado.Apellidos;
@@ -22,6 +23,7 @@ public partial class ModifyUserPopup : Popup
 		checkActivado.IsChecked = usuarioSeleccionado.Activado;
     }
 
+	// Actualizamos los valores del usuario seleccionado con los campos pasados por parámetro
     private async void btnConfirmar_Clicked(object sender, EventArgs e)
     {
 		if (usuarioSeleccionado != null)
@@ -31,6 +33,7 @@ public partial class ModifyUserPopup : Popup
         }
     }
 
+	// Volver atrás
     private async void btnCancelar_Clicked(object sender, EventArgs e)
     {
         await CloseAsync();

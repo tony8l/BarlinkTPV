@@ -1,54 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary 
-            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            x:Class="BarlinkTPV.Resources.Styles.MainTheme"
-            xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid">
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BarlinkTPV.Resources.Styles.MainTheme"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid">
 
-    <!-- ========================= -->
-    <!-- Colores -->
-    <!-- ========================= -->
+    <!--#region COLORES SUELTOS -->
+
+    <!-- Textos / Labels -->
     <Color x:Key="ColorTextoFlyout">#FFFFFF</Color>
     <Color x:Key="ColorTextoGrande">#1F2933</Color>
     <Color x:Key="ColorTextoPequeno">#5B6870</Color>
 
+    <!-- Botones -->
     <Color x:Key="ColorBotonPrincipalFondo">#2F6D67</Color>
     <Color x:Key="ColorBotonPrincipalTexto">#FFFDF8</Color>
-
     <Color x:Key="ColorBotonAlternativoFondo">#F3EFE7</Color>
     <Color x:Key="ColorBotonAlternativoTexto">#285A55</Color>
-
     <Color x:Key="ColorBotonCancelarFondo">#FF2B1C</Color>
     <Color x:Key="ColorBotonCancelarTexto">#FFFDF8</Color>
+    <Color x:Key="ColorBotonDeshabilitadoFondo">#C9D1C7</Color>
+    <Color x:Key="ColorBotonDeshabilitadoTexto">#8B959A</Color>
+    <Color x:Key="ColorBotonCobrar">#C89B2D</Color>
 
+    <!-- Frames / Fondos / Fondos contenedores -->
     <Color x:Key="ColorBorder">#D7DCCD</Color>
-
     <Color x:Key="ColorFondoPrincipal">#F8F6F1</Color>
     <Color x:Key="ColorFondoContenedores">#FFFCF7</Color>
     <Color x:Key="ColorFondoAlternativo">#5A928C</Color>
     <Color x:Key="ColorFondoFlyout">#5A928C</Color>
-
     <Color x:Key="ColorPanelSecundario">#EFE9DE</Color>
 
-    <Color x:Key="ColorBotonCriticoFondo">#D96C3F</Color>
-    <Color x:Key="ColorBotonCriticoTexto">#FFFDF9</Color>
-
-    <Color x:Key="ColorBotonDeshabilitadoFondo">#C9D1C7</Color>
-    <Color x:Key="ColorBotonDeshabilitadoTexto">#8B959A</Color>
-
+    <!-- Entries -->
     <Color x:Key="ColorEntryFondo">#FDFBF8</Color>
     <Color x:Key="ColorPlaceholder">#9AA4A6</Color>
     <Color x:Key="ColorEntryDeshabilitadoFondo">#ECE8E1</Color>
     <Color x:Key="ColorEntryDeshabilitadoTexto">#7E878C</Color>
     <Color x:Key="ColorEntryDeshabilitadoPlaceholder">#A8B0B3</Color>
 
+    <!-- Tarjetas colecciones -->
     <Color x:Key="ColorTarjetasMesa">#5A928C</Color>
     <Color x:Key="ColorTarjetasMesaOcupada">#D96C3F</Color>
     <Color x:Key="ColorTarjetasProdCat">Orange</Color>
 
+    <!-- Syncfusion -->
     <Color x:Key="ColorGraficoLineas">#D7DCCD</Color>
     <Color x:Key="ColorGraficoTextos">#1F2933</Color>
-
     <Color x:Key="ColorDataGridHeaderFondo">#5A928C</Color>
     <Color x:Key="ColorDataGridHeaderTexto">#FFFDF8</Color>
     <Color x:Key="ColorDataGridFila">#FFFCF7</Color>
@@ -57,26 +54,26 @@
     <Color x:Key="ColorDataGridSeleccion">#D7E7E4</Color>
     <Color x:Key="ColorDataGridSeleccionTexto">#1F2933</Color>
     <Color x:Key="ColorDataGridBordes">#D7DCCD</Color>
-
     <Color x:Key="ColorLabelPosMesa">#1F2933</Color>
     <Color x:Key="ColorLabelPosCodMesa">#FDFBF8</Color>
+    <!--#endregion-->
 
-    <!-- ========================= -->
-    <!-- Elementos genéricos -->
-    <!-- ========================= -->
+    <!--#region ELEMENTOS IMPLÍCITOS -->
 
     <!-- Label pequeño genérico -->
     <Style TargetType="Label" x:Key="Label">
         <Setter Property="TextColor" Value="{DynamicResource ColorTextoPequeno}" />
-        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Inter"/>
     </Style>
 
-    <!-- Button genérico = botón principal -->
+    <!-- Botón genérico -->
     <Style TargetType="Button">
         <Setter Property="BackgroundColor" Value="{DynamicResource ColorBotonPrincipalFondo}" />
         <Setter Property="TextColor" Value="{DynamicResource ColorBotonPrincipalTexto}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Inter"/>
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="14,10" />
         <Setter Property="BorderWidth" Value="0" />
@@ -133,6 +130,7 @@
         <Setter Property="StrokeShape" Value="RoundRectangle 20"/>
     </Style>
 
+    <!-- DataGrid Genérico -->
     <syncfusion:DataGridStyle 
         x:Key="SyncfusionDataGridStyle"
         HeaderRowBackground="{DynamicResource ColorDataGridHeaderFondo}"
@@ -151,6 +149,80 @@
         HeaderRowFontSize="16"
         RowFontFamily="Inter"
         RowFontSize="15" />
+
+    <!-- Pickers -->
+    <Style TargetType="Picker">
+        <Setter Property="BackgroundColor" Value="{DynamicResource ColorEntryFondo}" />
+        <Setter Property="TextColor" Value="{DynamicResource ColorTextoGrande}" />
+        <Setter Property="TitleColor" Value="{DynamicResource ColorPlaceholder}" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="Inter" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Focused">
+                        <VisualState.Setters>
+                            <Setter 
+                                Property="BackgroundColor"
+                                Value="{DynamicResource ColorFondoContenedores}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter 
+                                Property="BackgroundColor"
+                                Value="{DynamicResource ColorEntryDeshabilitadoFondo}" />
+                            <Setter 
+                                Property="TextColor"
+                                Value="{DynamicResource ColorEntryDeshabilitadoTexto}" />
+                            <Setter 
+                                Property="TitleColor"
+                                Value="{DynamicResource ColorEntryDeshabilitadoPlaceholder}" />
+                            <Setter Property="Opacity" Value="0.85" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!-- DatePicker -->
+    <Style TargetType="DatePicker">
+        <Setter Property="BackgroundColor" Value="{DynamicResource ColorEntryFondo}" />
+        <Setter Property="TextColor" Value="{DynamicResource ColorTextoGrande}" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="Inter" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="MinimumWidthRequest" Value="170" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Focused">
+                        <VisualState.Setters>
+                            <Setter 
+                                Property="BackgroundColor"
+                                Value="{DynamicResource ColorFondoContenedores}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter 
+                                Property="BackgroundColor"
+                                Value="{DynamicResource ColorEntryDeshabilitadoFondo}" />
+                            <Setter 
+                                Property="TextColor"
+                                Value="{DynamicResource ColorEntryDeshabilitadoTexto}" />
+                            <Setter Property="Opacity" Value="0.85" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <!--#endregion-->
     
     <!-- ========================= -->
     <!-- Elementos con x:Key -->
@@ -170,10 +242,11 @@
         <Setter Property="TextColor" Value="{DynamicResource ColorBotonAlternativoTexto}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Inter"/>
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="14,10" />
         <Setter Property="BorderWidth" Value="1" />
-        <Setter Property="BorderColor" Value="{DynamicResource ColorBorder}" />
+        <Setter Property="BorderColor" Value="{DynamicResource ColorBotonPrincipalFondo}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -196,6 +269,7 @@
         <Setter Property="TextColor" Value="{DynamicResource ColorBotonCancelarTexto}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Inter"/>
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="14,10" />
         <Setter Property="BorderWidth" Value="1" />
@@ -222,30 +296,6 @@
         <Setter Property="Padding" Value="5"/>
         <Setter Property="HeightRequest" Value="40"/>
         <Setter Property="WidthRequest" Value="40"/>
-    </Style>
-
-    <!-- Button de acción crítica -->
-    <Style x:Key="BotonAccionCritica" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{DynamicResource ColorBotonCriticoFondo}" />
-        <Setter Property="TextColor" Value="{DynamicResource ColorBotonCriticoTexto}" />
-        <Setter Property="FontSize" Value="18" />
-        <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="CornerRadius" Value="12" />
-        <Setter Property="Padding" Value="16,12" />
-        <Setter Property="BorderWidth" Value="0" />
-        <Setter Property="VisualStateManager.VisualStateGroups">
-            <VisualStateGroupList>
-                <VisualStateGroup x:Name="CommonStates">
-                    <VisualState x:Name="Normal" />
-                    <VisualState x:Name="Disabled">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{DynamicResource ColorBotonDeshabilitadoFondo}" />
-                            <Setter Property="TextColor" Value="{DynamicResource ColorBotonDeshabilitadoTexto}" />
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateGroupList>
-        </Setter>
     </Style>
 
     <!-- Border entry -->
@@ -296,79 +346,5 @@
         <Setter Property="BackgroundColor" Value="{DynamicResource ColorFondoContenedores}" />
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="VerticalOptions" Value="Center"/>
-    </Style>
-
-    <Style TargetType="Picker">
-        <Setter Property="BackgroundColor" Value="{DynamicResource ColorEntryFondo}" />
-        <Setter Property="TextColor" Value="{DynamicResource ColorTextoGrande}" />
-        <Setter Property="TitleColor" Value="{DynamicResource ColorPlaceholder}" />
-        <Setter Property="FontSize" Value="15" />
-        <Setter Property="FontFamily" Value="Inter" />
-        <Setter Property="HeightRequest" Value="50" />
-        <Setter Property="VisualStateManager.VisualStateGroups">
-            <VisualStateGroupList>
-
-                <VisualStateGroup x:Name="CommonStates">
-
-                    <VisualState x:Name="Normal" />
-
-                    <VisualState x:Name="Focused">
-                        <VisualState.Setters>
-                            <!-- Mismo efecto que Entry -->
-                            <Setter Property="BackgroundColor"
-                                Value="{DynamicResource ColorFondoContenedores}" />
-                        </VisualState.Setters>
-                    </VisualState>
-
-                    <VisualState x:Name="Disabled">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor"
-                                Value="{DynamicResource ColorEntryDeshabilitadoFondo}" />
-                            <Setter Property="TextColor"
-                                Value="{DynamicResource ColorEntryDeshabilitadoTexto}" />
-                            <Setter Property="TitleColor"
-                                Value="{DynamicResource ColorEntryDeshabilitadoPlaceholder}" />
-                            <Setter Property="Opacity" Value="0.85" />
-                        </VisualState.Setters>
-                    </VisualState>
-
-                </VisualStateGroup>
-
-            </VisualStateGroupList>
-        </Setter>
-    </Style>
-    
-    <!-- DatePicker -->
-    <Style TargetType="DatePicker">
-        <Setter Property="BackgroundColor" Value="{DynamicResource ColorEntryFondo}" />
-        <Setter Property="TextColor" Value="{DynamicResource ColorTextoGrande}" />
-        <Setter Property="FontSize" Value="15" />
-        <Setter Property="FontFamily" Value="Inter" />
-        <Setter Property="HeightRequest" Value="50" />
-        <Setter Property="MinimumWidthRequest" Value="170" />
-        <Setter Property="VisualStateManager.VisualStateGroups">
-            <VisualStateGroupList>
-                <VisualStateGroup x:Name="CommonStates">
-                    <VisualState x:Name="Normal" />
-
-                    <VisualState x:Name="Focused">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor"
-                                Value="{DynamicResource ColorFondoContenedores}" />
-                        </VisualState.Setters>
-                    </VisualState>
-
-                    <VisualState x:Name="Disabled">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor"
-                                Value="{DynamicResource ColorEntryDeshabilitadoFondo}" />
-                            <Setter Property="TextColor"
-                                Value="{DynamicResource ColorEntryDeshabilitadoTexto}" />
-                            <Setter Property="Opacity" Value="0.85" />
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateGroupList>
-        </Setter>
     </Style>
 </ResourceDictionary>

@@ -15,12 +15,14 @@ public partial class WorkerRegPopup : Popup
         _apiService = new ApiService();
         this.globalData = globalData;
 
+        // Si el usuario ya ha fichado una "Entrada", se desactiva el Botón Entrada y se activa el Botón Salida
         if (globalData.UltimoTipoFichaje == TipoFichaje.Entrada)
         {
             btnEntrada.IsEnabled = false;
             btnSalida.IsEnabled = true;;
         }
 
+        // Si el usuario ya ha fichado una "Salida", se desactiva el Botón Salida y se activa el Botón Entrada
         else if (globalData.UltimoTipoFichaje == TipoFichaje.Salida || globalData.UltimoTipoFichaje == null)
         {
             btnEntrada.IsEnabled = true;
@@ -28,6 +30,7 @@ public partial class WorkerRegPopup : Popup
         }
     }
 
+    // Se inserta el fichaje de entrada y volver atrás
     private async void btnEntrada_Clicked(object sender, EventArgs e)
     {
         var fichaje = await _apiService.FicharEntrada(globalData.IdUsuario);
@@ -35,6 +38,7 @@ public partial class WorkerRegPopup : Popup
         await CloseAsync();
     }
 
+    // Se inserta el fichaje de salida y volver atrás
     private async void btnSalida_Clicked(object sender, EventArgs e)
     {
         var fichaje = await _apiService.FicharSalida(globalData.IdUsuario);
@@ -42,6 +46,7 @@ public partial class WorkerRegPopup : Popup
         await CloseAsync();
     }
 
+    // Volver atrás
     private async void btnCancelar_Clicked(object sender, EventArgs e)
     {
         await CloseAsync();

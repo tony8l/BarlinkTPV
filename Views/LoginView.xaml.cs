@@ -23,6 +23,7 @@ public partial class LoginView : ContentPage
     private async void btnIniciarSesion_Clicked(object sender, EventArgs e)
     {
         string dniIntroducido;
+        // Comprobamos que se introduzca algúnv alor
         if(entryDni.Text != null)
         {
             dniIntroducido = entryDni.Text.Trim().ToUpper();
@@ -40,7 +41,8 @@ public partial class LoginView : ContentPage
 
         var usuario = await _apiService.IniciarSesion(dniIntroducido);
 
-        if (usuario != null)
+        // Si se encuentra ningún usuario con ese DNI se obtiene el último tipo de fichaje de ese usuario y sus ajustes
+        if (usuario != null && usuario.Activado == true)
         {
             var ultimoFichaje = await _apiService.ObtenerUltimoFichaje(usuario.Dni);
 
@@ -52,11 +54,13 @@ public partial class LoginView : ContentPage
 
             var ajustesUsuario = await _apiService.ObtenerAjustesUsuario(usuario.Id);
 
+            // Si ese usuario no teine ajustes se crean unos nuevos
             if (ajustesUsuario == null)
             {
                 ajustesUsuario = await _apiService.CrearAjustes(usuario.Id);
             }
 
+            // Si tiene ajustes, se almacenan dentro del Singleton
             if (ajustesUsuario != null)
             {
                 globalData.AjustesActualesId = ajustesUsuario.Id;
@@ -65,6 +69,7 @@ public partial class LoginView : ContentPage
                 ajustes.AplicarAjustes(ajustesUsuario);
             }
 
+            // Dependiendo de su rol, se abre un Shell difereente
             if (usuario.Rol == RolUsuario.Camarero)
             {
                 Application.Current.MainPage = new UserNavigation(globalData);
@@ -76,7 +81,7 @@ public partial class LoginView : ContentPage
         }
         else
         {
-            await DisplayAlertAsync("Error", "Usuario no encontrado", "Aceptar");
+            await DisplayAlertAsync("Error", "Usuario no encontrado o desactivado", "Aceptar");
         }
     }
 
