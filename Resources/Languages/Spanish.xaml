@@ -15,7 +15,7 @@
     
     <!-- LoginView -->
     <x:String x:Key="LoginView_Titulo">BARLINK TPV</x:String>
-    <x:String x:Key="LoginView_PlaceholderDni">Introduce tu DNI</x:String>
+    <x:String x:Key="LoginView_PlaceholderDni">Introduce tu ID</x:String>
     <x:String x:Key="LoginView_IniciarSesion">Iniciar Sesión</x:String>
 
     <!-- OrderView -->
@@ -88,7 +88,7 @@
     <x:String x:Key="WorkerRegPopup_Cancelar">Cancelar</x:String>
     
     <!-- Update/CreateUser Popup-->
-    <x:String x:Key="UserPopup_Dni">DNI: </x:String>
+    <x:String x:Key="UserPopup_Dni">ID: </x:String>
     <x:String x:Key="UserPopup_Nombre">Nombre: </x:String>
     <x:String x:Key="UserPopup_Apellidos">Apellidos: </x:String>
     <x:String x:Key="UserPopup_Rol">Rol: </x:String>
